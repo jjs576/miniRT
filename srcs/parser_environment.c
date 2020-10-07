@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser_environment.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/07 21:14:13 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/07 21:42:38 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/07 21:50:22 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		main(int argc, char **argv)
+int		parse_resolution(t_file	*f, t_scene *s)
 {
-	t_rt	rt;
-	t_file	file;
-	t_mlx	mlx;
 
-	if (argc != 2 && argc != 3)
-		print_error(-1);
-	check_error(open_file(&file, argv[1]));
-	if (argc == 3 && !ft_strcmp(argv[2], "--save"))
-	{
-		// export bmp
-	}
-	return (0);
+}
+
+int		parse_ambient(t_file *f, t_scene *s)
+{
+}
+
+int		parse_camera(t_file *f, t_scene *s)
+{
+}
+
+int		parse_light(t_file *f, t_scene *s)
+{
 }

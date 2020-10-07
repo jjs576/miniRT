@@ -6,13 +6,13 @@
 /*   By: jjoo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:26:55 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/07 20:47:41 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/07 21:40:52 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	*ft_memcpy(void	*dst, const void *src, size_t n)
+static void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	void	*ret;
 	char	*src_char;
@@ -30,7 +30,7 @@ static void	*ft_memcpy(void	*dst, const void *src, size_t n)
 
 static void	*ft_strndup(char *s, size_t n)
 {
-	size_t 	i;
+	size_t	i;
 	char	*ret;
 
 	i = 0;

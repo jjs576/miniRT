@@ -6,7 +6,7 @@
 /*   By: jjoo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:18:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/07 20:43:00 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/07 22:00:26 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@
 # define E_CANNOT_OPEN		-2
 # define E_WRONG_FILENAME	-3
 # define E_CANNOT_READ		-4
-
 
 #endif
