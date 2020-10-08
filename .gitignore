@@ -1,1 +1,4 @@
 *.swp
+.vscode
+scenes
+scenes/*.rt

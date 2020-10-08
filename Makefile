@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjoo <marvin@42.fr>                        +#+  +:+       +#+         #
+#    By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 14:04:40 by jjoo              #+#    #+#              #
-#    Updated: 2020/10/07 16:37:37 by jjoo             ###   ########.fr        #
+#    Updated: 2020/10/08 11:48:26 by jjoo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(LIBMLX):
 	@$(MAKE) -C ./$(OPENGL)
 	@cp ./$(MMS)/libmlx.dylib .
 	@cp ./$(OPENGL)/libmlx.a .
-	
+
 $(NAME): $(OBJS) $(LIBMLX)
 	$(CC) $(FLAGS) -I $(INCS) $(LIBMLX) $(OBJS) -o $(NAME)
 

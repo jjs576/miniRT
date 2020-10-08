@@ -3,32 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjoo <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:26:55 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/07 21:40:52 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/08 13:59:52 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	void	*ret;
-	char	*src_char;
-	char	*dst_char;
 
-	if (!dst && !src)
-		return (0);
-	ret = dst;
-	dst_char = (char *)dst;
-	src_char = (char *)src;
-	while (n--)
-		*dst_char++ = *src_char++;
-	return (ret);
-}
-
-static void	*ft_strndup(char *s, size_t n)
+void	*ft_strndup(char *s, size_t n)
 {
 	size_t	i;
 	char	*ret;
@@ -45,15 +30,19 @@ static void	*ft_strndup(char *s, size_t n)
 	return (ret);
 }
 
-int			ft_strcmp(char *s1, char *s2)
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	while (*s1)
-		if (*s1++ != *s2++)
-			break ;
-	return (*(unsigned char)s1 - *(unsigned char)s2);
+	while (n--)
+	{
+		if (!*s1 || !*s2 || *s1 != *s2)
+			return (*(unsigned char*)s1 - *(unsigned char*)s2);
+		s1++;
+		s2++;
+	}
+	return (0);
 }
 
-int			ft_strlen(char *s)
+int		ft_strlen(char *s)
 {
 	int	len;
 
@@ -63,7 +52,7 @@ int			ft_strlen(char *s)
 	return (len);
 }
 
-char		*ft_strjoin(char *dst, char *src)
+char	*ft_strjoin(char *dst, char *src)
 {
 	char	*ret;
 	size_t	dst_len;
@@ -80,4 +69,15 @@ char		*ft_strjoin(char *dst, char *src)
 	ft_memcpy(ret + dst_len, src, src_len);
 	ret[dst_len + src_len] = 0;
 	return (ret);
+}
+
+int		ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i] != (char)c)
+		if (!s[i])
+			return (-1);
+	return (i);
 }
