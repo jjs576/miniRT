@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:51:43 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/08 13:38:49 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/09 20:21:30 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	check_error(int n)
 	exit(n);
 }
 
+void	init_mlx(t_mlx *mlx, t_scene *scene)
+{
+	mlx->mlx_ptr = mlx_init();
+	mlx->scene = scene;
+	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr, mlx->scene->
+}
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
