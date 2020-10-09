@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/08 17:18:11 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/09 11:46:28 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
 
 int		open_file(t_file *file, char *filename);
 
@@ -41,7 +42,7 @@ int		parse_triangle(char *str, t_scene *scene);
 
 double	parse_double(char *s, double *dst);
 int		parse_multi_double(char	*s, double *dst);
-int		parse_int(char *s, int *dst);
+int		parse_int(char *s, int *dst, int isSigned);
 int		parse_multi_int(char *s, int *dst);
 int		parse_space(char *s);
 

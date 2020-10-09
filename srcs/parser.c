@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:45:54 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/08 17:19:39 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/09 11:57:16 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ int			parser(t_file *f, t_scene *s)
 			return (E_INVALID_FILE);
 		ptr += count;
 	}
+	return (TRUE);
 }

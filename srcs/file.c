@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:24:13 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/08 13:31:02 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/09 10:41:36 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static int		read_file(t_file *file)
 	buf_size = BUF_SIZE;
 	if (!(buf = (char *)malloc(sizeof(char) * buf_size + 1)))
 		return (E_CANNOT_READ);
-	file->data = 0;
-	file->size = 0;
 	while ((len = read(file->fd, buf, buf_size)) >= 0)
 	{
 		buf[len] = 0;

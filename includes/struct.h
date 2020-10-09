@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 21:05:36 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/08 16:25:34 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/09 10:54:33 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ typedef struct	s_list
 {
 	int		type;
 	void	*data;
-	double	reflective;
 	void	*prev;
 	void	*next;
 }				t_list;
