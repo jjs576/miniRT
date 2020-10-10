@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 21:42:38 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/08 16:20:47 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/10 17:50:44 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int		parse_resolution(char *str, t_scene *scene)
 	count = 1;
 	s = str + count;
 	count += parse_space(s + count);
-	count += parse_int(s + count, &res.x);
+	count += parse_int(s + count, &res.x, FALSE);
 	count += parse_space(s + count);
-	count += parse_int(s + count, &res.y);
+	count += parse_int(s + count, &res.y, FALSE);
 	scene->res = res;
 	if (*(s + count) == '\n')
 		return (count);
@@ -63,7 +63,7 @@ int		parse_camera(char *str, t_scene *scene)
 	count += parse_space(s + count);
 	count += parse_multi_double(s + count, camera.axis);
 	count += parse_space(s + count);
-	count += parse_int(s + count, &camera.fov);
+	count += parse_int(s + count, &camera.fov, FALSE);
 	push_back(&scene->camera, T_CAMERA, &camera);
 	if (*(s + count) == '\n')
 		return (count);

@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/09 20:06:29 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/10 17:51:23 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		main(int argc, char **argv)
 	ft_memset(&file, 0, sizeof(t_file));
 	check_error(open_file(&file, argv[1]));
 	check_error(parser(&file, &scene));
-	close(t_file.fd);
-	mlx = init_mlx(&scene);
+	close(file.fd);
+	init_mlx(&mlx, &scene);
 	create_image(&mlx);
 	// make image
 	if (argc == 2)

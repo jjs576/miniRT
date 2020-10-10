@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 21:59:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/09 11:54:04 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/10 18:08:42 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ double	parse_double(char *s, double *dst)
 	}
 	n = decimal + (pow(0.1, floor(log10(fraction) + 1)) * fraction);
 	*dst = n;
+	if (count == 0)
+		check_error(E_PARSE_FAIL);
 	return (count);
 }
 
@@ -38,19 +40,20 @@ int		parse_multi_double(char	*s, double *dst)
 	int		count;
 
 	count = 0;
-	count += parse_double(s + count, dst[0]);
+	count += parse_double(s + count, &dst[0]);
 	if (*(s + count) == ',')
 		count++;
 	else
 		return (-1);
-	count += parse_double(s + count, dst[1]);
+	count += parse_double(s + count, &dst[1]);
 	if (*(s + count) == ',')
 		count++;
 	else
 		return (-1);
-	count += parse_double(s + count, dst[2]);
+	count += parse_double(s + count, &dst[2]);
+	if (count == 0)
+		check_error(E_PARSE_FAIL);
 	return (count);
-
 }
 
 int		parse_int(char *s, int *dst, int isSigned)
@@ -75,6 +78,8 @@ int		parse_int(char *s, int *dst, int isSigned)
 		count++;
 	}
 	*dst = (int)(n * negative);
+	if (count == 0)
+		check_error(E_PARSE_FAIL);
 	return (count);
 }
 
@@ -83,17 +88,19 @@ int		parse_multi_int(char *s, int *dst)
 	int		count;
 
 	count = 0;
-	count += parse_int(s + count, dst[0], TRUE);
+	count += parse_int(s + count, &dst[0], TRUE);
 	if (*(s + count) == ',')
 		count++;
 	else
 		return (-1);
-	count += parse_int(s + count, dst[1], TRUE);
+	count += parse_int(s + count, &dst[1], TRUE);
 	if (*(s + count) == ',')
 		count++;
 	else
 		return (-1);
-	count += parse_int(s + count, dst[2], TRUE);
+	count += parse_int(s + count, &dst[2], TRUE);
+	if (count == 0)
+		check_error(E_PARSE_FAIL);
 	return (count);
 }
 
@@ -102,7 +109,9 @@ int		parse_space(char *s)
 	int	count;
 
 	count = 0;
-	while (ft_strchr(" \t\r\f\v", *(s + count) > -1)
+	while (ft_strchr(" \t\r\f\v", *(s + count) > -1))
 		count++;
+	if (count == 0)
+		check_error(E_PARSE_FAIL);
 	return (count);
 }
