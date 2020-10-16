@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/10 17:55:07 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/16 15:53:05 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 int		open_file(t_file *file, char *filename);
 int		parser(t_file *f, t_scene *s);
+
+t_mlx	*init_mlx(t_scene *scene);
 
 int		parse_resolution(char *str, t_scene *scene);
 int		parse_ambient(char *str, t_scene *scene);

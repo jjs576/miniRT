@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 21:05:36 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/10 18:08:44 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/16 15:23:14 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ typedef struct	s_file
 	int		fd;
 	int		size;
 }				t_file;
-
-typedef struct	s_resolution
-{
-	int	x;
-	int	y;
-}				t_resolution;
 
 typedef struct	s_ambient
 {
@@ -57,17 +51,24 @@ typedef struct	s_light
 
 typedef struct	s_scene
 {
-	t_resolution	res;
 	t_ambient		ambient;
 	t_list			*camera;
 	t_list			*light;
 	t_list			*object;
+	int				width;
+	int				height;
 }				t_scene;
 
 typedef struct	s_mlx
 {
-	void	*mlx;
-	void	*window;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*mlx_img;
+	char	*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	t_scene	*scene;
 }				t_mlx;
 
 #endif

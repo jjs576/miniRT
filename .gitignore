@@ -2,3 +2,4 @@
 .vscode
 scenes
 scenes/*.rt
+.DS_Store

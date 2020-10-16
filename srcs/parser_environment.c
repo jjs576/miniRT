@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 21:42:38 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/10 17:50:44 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/16 15:22:45 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ int		parse_resolution(char *str, t_scene *scene)
 {
 	char			*s;
 	int				count;
-	t_resolution	res;
 
 	count = 1;
 	s = str + count;
 	count += parse_space(s + count);
-	count += parse_int(s + count, &res.x, FALSE);
+	count += parse_int(s + count, &scene->width, FALSE);
 	count += parse_space(s + count);
-	count += parse_int(s + count, &res.y, FALSE);
-	scene->res = res;
+	count += parse_int(s + count, &scene->height, FALSE);
 	if (*(s + count) == '\n')
 		return (count);
 	else

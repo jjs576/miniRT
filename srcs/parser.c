@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:45:54 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/09 11:57:16 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/16 15:53:17 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			parser(t_file *f, t_scene *s)
 	char	*ptr;
 	int		count;
 
-	ptr = *f->data;
+	ptr = f->data;
 	if (ptr == 0)
 		return (E_INVALID_FILE);
 	while (*ptr)
