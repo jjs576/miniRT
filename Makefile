@@ -6,7 +6,7 @@
 #    By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 14:04:40 by jjoo              #+#    #+#              #
-#    Updated: 2020/10/08 11:48:26 by jjoo             ###   ########.fr        #
+#    Updated: 2020/10/25 11:12:06 by jjoo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,8 @@ FLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -rf
 
 MMS		=	libs/minilibx_mms_20200219
-OPENGL	=	libs/minilibx_opengl_20191021
 
-LIBMLX	=	libmlx.dylib libmlx.a
-
+LIBMLX	=	libmlx.dylib
 all: $(NAME)
 
 %.o: %.c
@@ -31,9 +29,7 @@ all: $(NAME)
 
 $(LIBMLX):
 	@$(MAKE) -C ./$(MMS)
-	@$(MAKE) -C ./$(OPENGL)
 	@cp ./$(MMS)/libmlx.dylib .
-	@cp ./$(OPENGL)/libmlx.a .
 
 $(NAME): $(OBJS) $(LIBMLX)
 	$(CC) $(FLAGS) -I $(INCS) $(LIBMLX) $(OBJS) -o $(NAME)
@@ -43,7 +39,6 @@ clean:
 
 fclean: clean
 	$(MAKE) -C $(MMS) clean
-	$(MAKE) -C $(OPENGL) clean
 	$(RM) $(LIBMLX)
 	$(RM) $(NAME)
 
