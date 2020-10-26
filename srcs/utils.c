@@ -5,46 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 16:51:43 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/16 15:53:45 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/26 18:07:14 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	check_error(int n)
+void		print_error(int errno)
 {
-	if (n > 0)
-		return;
-	ft_putstr("Error\n");
-	exit(n);
+	if (errno == E_CANNOT_OPEN)
+		ft_putstr(E_CANNOT_OPEN_MSG);
+	else if (errno == E_CANNOT_READ)
+		ft_putstr(E_CANNOT_READ_MSG);
+	if (errno < 0)
+		exit(errno);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int			open_file(char *path)
 {
-	void	*ret;
-	char	*src_char;
-	char	*dst_char;
-
-	if (!dst && !src)
-		return (0);
-	ret = dst;
-	dst_char = (char *)dst;
-	src_char = (char *)src;
-	while (n--)
-		*dst_char++ = *src_char++;
-	return (ret);
+	return open(path, O_RDONLY);
 }
 
-void	*ft_memset(void *b, int c, size_t len)
+static int	get_next_line(int fd, char **line)
 {
-	unsigned char	*uc;
+	char	*line;
+	char	buf[2];
+	int		flag;
 
-	uc = b;
-	while (len > 0)
+	if (fd == -1)
+		return E_CANNOT_OPEN;
+	while ((flag = read(fd, buf, 1) >= 0)
 	{
-		*uc++ = (unsigned char)c;
-		len--;
+		buf[1] = 0;
+
 	}
-	return (b);
 }
+
+int			read_file(int fd, t_my_mlx *mlx)
+{
+
+
+
+}
+

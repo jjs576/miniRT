@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_output.c                                     :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 20:08:34 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/08 01:07:43 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/25 11:25:10 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/26 17:46:33 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+#include "my_mlx.h"
 
-void	ft_putstr(char *s)
-{
-	if (!s)
-		return ;
-	while (*s)
-		ft_putchar(*s++);
-}
+void			print_error(int errno);
+
+int				open_file(char *path);
+int				read_file(int fd, t_my_mlx *mlx);
+
+#endif

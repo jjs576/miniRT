@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:18:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/09 11:24:46 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/26 18:12:40 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+#ifndef CONST_H
+# define CONST_H
 
 # define BUF_SIZE			1024
 
 # define TRUE				1
 # define FALSE				0
+
+# define R_GNL_ERROR		-1
+# define R_GNL_EOF			0
+# define R_GNL_LINE			1
 
 # define E_ARGUMENTS		-1
 # define E_CANNOT_OPEN		-2
@@ -25,6 +29,10 @@
 # define E_INVALID_FILE		-5
 # define E_MALLOC_FAIL		-6
 # define E_PARSE_FAIL		-7
+
+# define E_MSG				"Error - "
+# define E_CANNOT_OPEN_MSG	"can't open file"
+# define E_CANNOT_READ_MSG	"can't read file"
 
 # define T_SPHERE			0
 # define T_PLANE			1

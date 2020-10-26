@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   my_mlx.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 17:55:02 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/26 17:16:07 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/26 17:52:53 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef MY_MLX_H
+# define MY_MLX_H
 
-int		main(int argc, char **argv)
+typedef struct	s_my_mlx
 {
-	int		err;
-	t_my_mlx mlx;
 
-	if (argc != 2 && argc != 3)
-	print_error(read_file(open_file(argv[1]), &mlx));
+}				t_my_mlx;
 
-	return (0);
-}
+void			init_mlx(t_my_mlx *mlx);
+#endif
