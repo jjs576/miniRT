@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: jjoo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:43:10 by jjoo             ###   ########.fr       */
+/*   Created: 2020/07/02 11:20:09 by jjoo              #+#    #+#             */
+/*   Updated: 2020/07/04 23:31:31 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void		print_error(int errno)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (errno < 0)
+	while (n--)
 	{
-		ft_putstr(E_MSG);
-		if (errno == E_CANNOT_OPEN)
-			ft_putstr(E_CANNOT_OPEN_MSG);
-		else if (errno == E_CANNOT_READ)
-			ft_putstr(E_CANNOT_READ_MSG);
-		exit(errno);
+		if (!*s1 || !*s2 || *s1 != *s2)
+			return (*(unsigned char*)s1 - *(unsigned char*)s2);
+		s1++;
+		s2++;
 	}
+	return (0);
 }

@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:43:10 by jjoo             ###   ########.fr       */
+/*   Created: 2020/06/29 20:59:09 by jjoo              #+#    #+#             */
+/*   Updated: 2020/06/29 20:59:12 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void		print_error(int errno)
+int	ft_isalpha(int c)
 {
-	if (errno < 0)
-	{
-		ft_putstr(E_MSG);
-		if (errno == E_CANNOT_OPEN)
-			ft_putstr(E_CANNOT_OPEN_MSG);
-		else if (errno == E_CANNOT_READ)
-			ft_putstr(E_CANNOT_READ_MSG);
-		exit(errno);
-	}
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: jjoo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:47:43 by jjoo             ###   ########.fr       */
+/*   Created: 2020/06/30 16:10:16 by jjoo              #+#    #+#             */
+/*   Updated: 2020/06/30 16:25:37 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		err;
-	t_my_mlx mlx;
+	unsigned char	*cs1;
+	unsigned char	*cs2;
 
-	if (argc != 2 && argc != 3)
-	print_error(read_file(open_file(argv[1]), &mlx));
+	cs1 = (unsigned char *)s1;
+	cs2 = (unsigned char *)s2;
+	while (n--)
+	{
+		if (*cs1 != *cs2)
+			return (*cs1 - *cs2);
+		cs1++;
+		cs2++;
+	}
 	return (0);
 }

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:43:10 by jjoo             ###   ########.fr       */
+/*   Created: 2020/07/13 14:24:25 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/26 23:22:08 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void		print_error(int errno)
+void	ft_putnbr(int n)
 {
-	if (errno < 0)
+	long long int	num;
+
+	num = (long long int)n;
+	if (num < 0)
 	{
-		ft_putstr(E_MSG);
-		if (errno == E_CANNOT_OPEN)
-			ft_putstr(E_CANNOT_OPEN_MSG);
-		else if (errno == E_CANNOT_READ)
-			ft_putstr(E_CANNOT_READ_MSG);
-		exit(errno);
+		num = -num;
+		ft_putchar('-');
 	}
+	if (num >= 10)
+		ft_putnbr(num / 10);
+	ft_putchar((num % 10) + '0');
 }

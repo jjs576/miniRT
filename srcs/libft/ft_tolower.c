@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:43:10 by jjoo             ###   ########.fr       */
+/*   Created: 2020/06/29 21:08:12 by jjoo              #+#    #+#             */
+/*   Updated: 2020/06/29 21:41:24 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void		print_error(int errno)
+int	ft_tolower(int c)
 {
-	if (errno < 0)
-	{
-		ft_putstr(E_MSG);
-		if (errno == E_CANNOT_OPEN)
-			ft_putstr(E_CANNOT_OPEN_MSG);
-		else if (errno == E_CANNOT_READ)
-			ft_putstr(E_CANNOT_READ_MSG);
-		exit(errno);
-	}
+	return ((c >= 'A' && c <= 'Z') ? c + 32 : c);
 }

@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:18:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 18:12:40 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/26 21:44:32 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@
 # define E_CANNOT_READ		-4
 # define E_INVALID_FILE		-5
 # define E_MALLOC_FAIL		-6
-# define E_PARSE_FAIL		-7
+# define E_CANNOT_PARSE		-7
 
 # define E_MSG				"Error - "
-# define E_CANNOT_OPEN_MSG	"can't open file"
-# define E_CANNOT_READ_MSG	"can't read file"
+# define E_CANNOT_OPEN_MSG	"can't open file\n"
+# define E_CANNOT_READ_MSG	"can't read file\n"
+# define E_CANNOT_PARSE_MSG	"can't parse\n"
 
 # define T_SPHERE			0
 # define T_PLANE			1

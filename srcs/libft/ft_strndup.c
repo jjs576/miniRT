@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:43:10 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/26 23:24:55 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/26 23:25:04 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void		print_error(int errno)
+char	*ft_strndup(char *str, int n)
 {
-	if (errno < 0)
+	int		i;
+	char	*dup;
+
+	i = 0;
+	if (!(dup = ft_calloc(sizeof(char), n + 1)))
+		return (0);
+	while (i < n)
 	{
-		ft_putstr(E_MSG);
-		if (errno == E_CANNOT_OPEN)
-			ft_putstr(E_CANNOT_OPEN_MSG);
-		else if (errno == E_CANNOT_READ)
-			ft_putstr(E_CANNOT_READ_MSG);
-		exit(errno);
+		dup[i] = str[i];
+		i++;
 	}
+	return (dup);
 }

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: jjoo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:43:10 by jjoo             ###   ########.fr       */
+/*   Created: 2020/06/30 15:55:05 by jjoo              #+#    #+#             */
+/*   Updated: 2020/06/30 16:10:05 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void		print_error(int errno)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (errno < 0)
-	{
-		ft_putstr(E_MSG);
-		if (errno == E_CANNOT_OPEN)
-			ft_putstr(E_CANNOT_OPEN_MSG);
-		else if (errno == E_CANNOT_READ)
-			ft_putstr(E_CANNOT_READ_MSG);
-		exit(errno);
-	}
+	unsigned char	cc;
+	unsigned char	*cs;
+
+	cs = (unsigned char *)s;
+	cc = (unsigned char)c;
+	while (n--)
+		if (*cs++ == cc)
+			return (cs - 1);
+	return (0);
 }

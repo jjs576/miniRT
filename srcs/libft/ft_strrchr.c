@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: jjoo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:43:10 by jjoo             ###   ########.fr       */
+/*   Created: 2020/07/02 10:08:07 by jjoo              #+#    #+#             */
+/*   Updated: 2020/07/02 10:34:25 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "libft.h"
 
-void		print_error(int errno)
+char	*ft_strrchr(const char *s, int c)
 {
-	if (errno < 0)
-	{
-		ft_putstr(E_MSG);
-		if (errno == E_CANNOT_OPEN)
-			ft_putstr(E_CANNOT_OPEN_MSG);
-		else if (errno == E_CANNOT_READ)
-			ft_putstr(E_CANNOT_READ_MSG);
-		exit(errno);
-	}
+	char	*start;
+
+	start = (char *)s;
+	while (*s++)
+		;
+	while (--s != start && *s != (char)c)
+		;
+	if (*s == (char)c)
+		return (char *)s;
+	return (0);
 }

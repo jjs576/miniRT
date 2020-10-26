@@ -6,12 +6,12 @@
 #    By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 14:04:40 by jjoo              #+#    #+#              #
-#    Updated: 2020/10/25 11:12:06 by jjoo             ###   ########.fr        #
+#    Updated: 2020/10/26 23:20:36 by jjoo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	miniRT
-SRCS	=	$(wildcard srcs/*.c)
+SRCS	=	$(wildcard srcs/*/*.c)
 OBJS	=	$(SRCS:.c=.o)
 INCS	=	includes
 
