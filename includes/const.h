@@ -6,14 +6,14 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 19:18:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:44:32 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/28 23:30:35 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONST_H
 # define CONST_H
 
-# define BUF_SIZE			1024
+# define MAX_OBJECT			1024
 
 # define TRUE				1
 # define FALSE				0
@@ -40,6 +40,7 @@
 # define T_SQUARE			2
 # define T_CYLINDER			3
 # define T_TRIANGLE			4
+
 # define T_LIGHT			5
 # define T_CAMERA			6
 

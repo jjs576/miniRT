@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 16:50:58 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 23:23:36 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/28 18:09:34 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,6 @@ static int	cnt_word(char *str, char c)
 	if (can_word)
 		word_count++;
 	return (word_count);
-}
-
-static char	*ft_strndup(char *str, int n)
-{
-	int		i;
-	char	*dup;
-
-	i = 0;
-	if (!(dup = ft_calloc(sizeof(char), n + 1)))
-		return (0);
-	while (i < n)
-	{
-		dup[i] = str[i];
-		i++;
-	}
-	return (dup);
 }
 
 char		**ft_split(char const *s, char c)

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.h                                           :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 17:53:00 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/28 23:36:15 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/28 23:25:35 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/28 23:32:45 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#include "minirt.h"
 
-# include "vector.h"
-
-typedef struct	s_object
+t_scene	*make_scene()
 {
-	int		type;
-	float	intensity;
-	t_vec	point;
-	t_vec	color;
+	t_scene	*s;
 
-}				t_object;
-
-#endif
+	s = (t_scene*)ft_calloc(1, sizeof(t_scene));
+	s->lights = (t_object*)ft_calloc(MAX_OBJECT, sizeof(t_object));
+	s->objects = (t_object*)ft_calloc(MAX_OBJECT, sizeof(t_object));
+	return (s);
+}

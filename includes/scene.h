@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.h                                           :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 17:53:00 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/28 23:36:15 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/28 20:17:22 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/28 23:33:43 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#ifndef SCENE_H
+# define SCENE_H
 
-# include "vector.h"
+#include "object.h"
 
-typedef struct	s_object
+typedef struct	s_scene
 {
-	int		type;
-	float	intensity;
-	t_vec	point;
-	t_vec	color;
+	int			width;
+	int			height;
+	float		total_intensity;
+	int			num_light;
+	int			num_object;
+	t_object	*lights;
+	t_object	*objects;
 
-}				t_object;
+}				t_scene;
 
 #endif
