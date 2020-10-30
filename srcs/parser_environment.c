@@ -1,27 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   parser_environment.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:28:40 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/30 22:14:24 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/26 23:09:02 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/30 23:31:48 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
-
-typedef struct	s_vec
-{
-	float	x;
-	float	y;
-	float	z;
-}				t_vec;
-
-t_vec	*make_vector(float data[3]);
-t_vec	add_vector(t_vec a, t_vec b);
-t_vec	mul_vector(t_vec a, t_vec b);
-
-#endif
+#include "minirt.h"
+#include "my_mlx.h"
+#include "parser.h"

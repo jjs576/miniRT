@@ -6,11 +6,23 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:26:20 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/26 21:49:20 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/30 23:24:33 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "file.h"
+#include "my_mlx.h"
+#include "parser.h"
+
+t_file		*make_file(int fd)
+{
+	t_file	*file;
+
+	file = (t_file*)ft_calloc(1, sizeof(t_file));
+	file->fd = fd;
+	return (file);
+}
 
 int			open_file(char *path)
 {
@@ -40,18 +52,19 @@ static int	get_next_line(int fd, char **line)
 	return (flag);
 }
 
-int			read_file(int fd, t_my_mlx *mlx)
+int			read_file(t_my_mlx *mlx)
 {
 	int		ret;
-	char	*line;
 
-	while ((ret = get_next_line(fd, &line)) > 0)
+	while ((ret = get_next_line(mlx->file->fd, &mlx->file->line)) > 0)
 	{
-		if ((ret = parse_line(line, mlx)) == FALSE)
+		parse_line(mlx);
+		if (mlx->file->error == TRUE)
 			return (E_CANNOT_PARSE);
-		free(line);
+		free(mlx->file->line);
 	}
-	if (ret < 0 || (ret = parse_line(line, mlx)) == FALSE)
+	parse_line(mlx);
+	if (ret < 0 || mlx->file->error == TRUE)
 		return (E_CANNOT_PARSE);
 	return (TRUE);
 }

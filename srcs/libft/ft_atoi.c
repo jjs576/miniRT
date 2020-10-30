@@ -6,25 +6,34 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 13:49:47 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/28 18:09:34 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/30 23:39:10 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(char *line, int *nb)
+int	ft_atoi(const char *str)
 {
-	int		i;
-	long	nnb;
+	long long int	lret;
+	int				negative;
 
-	i = 0;
-	nnb = 0;
-	if (line[i] == '-')
-		i++;
-	while (line[i] && line[i] >= '0' && line[i] <= '9')
-		nnb = 10 * nnb + (line[i++] - '0');
-	if (i == 0 || (line[0] == '-' && i == 1))
-		return (-1);
-	*nb = (line[0] == '-') ? -nnb : nnb;
-	return (i);
+	lret = 0;
+	negative = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			negative = -1;
+		str++;
+	}
+	while (*str && (*str >= '0' && *str <= '9'))
+	{
+		if (lret > lret * 10)
+			return (negative == 1 ? -1 : 0);
+		lret *= 10;
+		lret += (*str) - '0';
+		str++;
+	}
+	return (lret * negative);
 }

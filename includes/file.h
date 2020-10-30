@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   file.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:28:40 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/30 22:14:24 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/30 22:53:24 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/30 23:22:37 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#ifndef FILE_H
+# define FILE_H
 
-typedef struct	s_vec
+# include "my_mlx.h"
+
+typedef struct	s_file
 {
-	float	x;
-	float	y;
-	float	z;
-}				t_vec;
+	int		fd;
+	char	*line;
+	int		index;
+	int		error;
+}				t_file;
 
-t_vec	*make_vector(float data[3]);
-t_vec	add_vector(t_vec a, t_vec b);
-t_vec	mul_vector(t_vec a, t_vec b);
+t_file		*make_file(int fd);
+int			open_file(char *path);
+int			read_file(t_my_mlx *mlx);
 
 #endif

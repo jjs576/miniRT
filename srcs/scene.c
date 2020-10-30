@@ -6,11 +6,12 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 23:25:35 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/28 23:32:45 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/30 23:26:47 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "scene.h"
 
 t_scene	*make_scene()
 {

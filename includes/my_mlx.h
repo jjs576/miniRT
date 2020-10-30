@@ -6,14 +6,15 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:16:07 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/28 23:05:10 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/30 23:08:42 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MY_MLX_H
 # define MY_MLX_H
 
-#include "scene.h"
+# include "scene.h"
+# include "file.h"
 
 typedef struct	s_my_mlx
 {
@@ -25,6 +26,7 @@ typedef struct	s_my_mlx
 	int		size_line;
 	int		endian;
 	t_scene	*scene;
+	t_file	*file;
 }				t_my_mlx;
 
 void			init_mlx(t_my_mlx *mlx);

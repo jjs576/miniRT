@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/28 23:35:44 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/30 23:38:07 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,71 +21,41 @@
 
 # include "libft.h"
 # include "mlx.h"
-# include "vector.h"
-# include "const.h"
-# include "object.h"
-# include "my_mlx.h"
 
 
+# define MAX_OBJECT			1024
 
-/*
-**	parse
-*/
+# define TRUE				1
+# define FALSE				0
 
-int			parse_line(char *line, t_my_mlx *mlx);
+# define R_GNL_ERROR		-1
+# define R_GNL_EOF			0
+# define R_GNL_LINE			1
 
-/*
-**	parse_environment
-*/
+# define E_ARGUMENTS		-1
+# define E_CANNOT_OPEN		-2
+# define E_WRONG_FILENAME	-3
+# define E_CANNOT_READ		-4
+# define E_INVALID_FILE		-5
+# define E_MALLOC_FAIL		-6
+# define E_CANNOT_PARSE		-7
 
-int			parse_resolution(char *line, t_my_mlx *mlx);
-int			parse_ambient(char *line, t_my_mlx *mlx);
-int			parse_camera(char *line, t_my_mlx *mlx);
-int			parse_light(char *line, t_my_mlx *mlx);
+# define E_MSG				"Error - "
+# define E_AGUMENTS_MSG		"invalid arguments\n"
+# define E_CANNOT_OPEN_MSG	"can't open file\n"
+# define E_CANNOT_READ_MSG	"can't read file\n"
+# define E_CANNOT_PARSE_MSG	"can't parse\n"
 
-/*
-**	parse_object
-*/
+# define T_AMBIENT			1 << 0
+# define T_LIGHT			1 << 1
+# define T_CAMERA			1 << 2
 
-int			parse_sphere(char *line, t_my_mlx *mlx);
-int			parse_plane(char *line, t_my_mlx *mlx);
-int			parse_square(char *line, t_my_mlx *mlx);
-int			parse_cylinder(char *line, t_my_mlx *mlx);
-int			parse_triangle(char *line, t_my_mlx *mlx);
-
-/*
-**	parse_token
-*/
-
-int			parse_space(char *line);
-int			parse_int(char *line, int *dst);
-int			parse_float(char *line, float *dst);
-int			parse_multi_int(char *line, int **dst);
-int			parse_multi_float(char *line, float **dst);
-
-/*
-**	scene
-*/
-
-t_scene		*make_scene();
-
-/*
-**	object
-*/
-
-t_object	*make_object(int type, ...);
-
-/*
-**	utils
-*/
+# define T_SPHERE			1 << 3
+# define T_PLANE			1 << 4
+# define T_SQUARE			1 << 5
+# define T_CYLINDER			1 << 6
+# define T_TRIANGLE			1 << 7
 
 void		print_error(int errno);
-
-/*
-**	file
-*/
-
-int			open_file(char *path);
-int			read_file(int fd, t_my_mlx *mlx);
 
 #endif

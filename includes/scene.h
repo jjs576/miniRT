@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:17:22 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/28 23:33:43 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/30 22:59:08 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct	s_scene
 	t_object	*objects;
 
 }				t_scene;
+
+t_scene		*make_scene();
 
 #endif
