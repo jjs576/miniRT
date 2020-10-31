@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:16:07 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/30 23:08:42 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/31 16:19:56 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 # define MY_MLX_H
 
 # include "scene.h"
-# include "file.h"
+
+typedef struct	s_file
+{
+	int		fd;
+	char	*line;
+	int		index;
+	int		error;
+}				t_file;
+
 
 typedef struct	s_my_mlx
 {
@@ -30,4 +38,8 @@ typedef struct	s_my_mlx
 }				t_my_mlx;
 
 void			init_mlx(t_my_mlx *mlx);
+
+t_file			*make_file(int fd);
+int				open_file(char *path);
+int				read_file(t_my_mlx *mlx);
 #endif

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.c                                           :+:      :+:    :+:   */
+/*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 23:36:03 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/30 23:26:37 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/30 22:04:26 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/31 16:22:29 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "object.h"
+#include "vector.h"
 
-t_object	*make_object(int type)
+t_vec	*make_vector(float data[3])
 {
-	t_object	*object;
+	t_vec	*vec;
 
-	object = (t_object*)ft_calloc(1, sizeof(t_object));
-	return (object);
+	vec = (t_vec*)ft_calloc(1, sizeof(t_vec));
+	vec->x = data[0];
+	vec->y = data[1];
+	vec->z = data[2];
+	return (vec);
 }

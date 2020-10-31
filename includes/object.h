@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 17:53:00 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/30 22:59:13 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/31 14:54:51 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_object
 	float	height;
 	int		fov;
 }				t_object;
+
 t_object	*make_object(int type);
 
 #endif

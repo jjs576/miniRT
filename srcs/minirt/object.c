@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/30 23:11:50 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/28 23:36:03 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/31 16:20:27 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "my_mlx.h"
+#include "object.h"
 
-int		main(int argc, char **argv)
+t_object	*make_object(int type)
 {
-	int		err;
-	t_my_mlx mlx;
+	t_object	*object;
 
-	if (argc != 2 && argc != 3)
-		print_error(E_ARGUMENTS);
-	mlx.file = make_file(open_file(argv[1]));
-	print_error(read_file(&mlx));
-	return (0);
+	object = (t_object*)ft_calloc(1, sizeof(t_object));
+	object->type = type;
+	return (object);
 }
