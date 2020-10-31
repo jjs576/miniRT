@@ -26,5 +26,5 @@ void	init_mlx(t_my_mlx *mlx)
 
 void	create_image(t_my_mlx *mlx)
 {
-
+	
 }

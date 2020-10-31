@@ -22,7 +22,6 @@
 # include "libft.h"
 # include "mlx.h"
 
-
 # define MAX_OBJECT			1024
 
 # define TRUE				1
