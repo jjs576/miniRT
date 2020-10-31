@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/30 23:38:07 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/10/31 19:09:15 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define E_CANNOT_PARSE		-7
 
 # define E_MSG				"Error - "
-# define E_AGUMENTS_MSG		"invalid arguments\n"
+# define E_ARGUMENTS_MSG		"invalid arguments\n"
 # define E_CANNOT_OPEN_MSG	"can't open file\n"
 # define E_CANNOT_READ_MSG	"can't read file\n"
 # define E_CANNOT_PARSE_MSG	"can't parse\n"

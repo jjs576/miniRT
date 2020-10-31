@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/31 19:34:52 by jjoo             ###   ########.fr       */
+/*   Created: 2020/10/31 19:26:35 by jjoo              #+#    #+#             */
+/*   Updated: 2020/10/31 19:32:37 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "my_mlx.h"
+#include "minirt.h"
 
-int		main(int argc, char **argv)
+void	init_mlx(t_my_mlx *mlx)
 {
-	t_my_mlx mlx;
+	mlx->mlx_ptr = mlx_init();
+	mlx->mlx_img = mlx_new_image(mlx->mlx_ptr,
+		mlx->scene->width, mlx->scene->height);
+	mlx->data = mlx_get_data_addr(mlx->mlx_img,
+		&mlx->bpp, &mlx->size_line, &mlx->endian);
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
+		mlx->scene->width, mlx->scene->height, "miniRT");
+}
 
-	if (argc != 2 && argc != 3)
-		print_error(E_ARGUMENTS);
-	mlx.scene = make_scene();
-	mlx.file = make_file(open_file(argv[1]));
-	print_error(read_file(&mlx));
-	init_mlx(&mlx);
-	create_image(&mlx);
-	if (argc == 2)
-		start_mlx(&mlx);
-	else
-		export_bmp(&mlx);
-	return (0);
+void	create_image(t_my_mlx *mlx)
+{
+
 }
