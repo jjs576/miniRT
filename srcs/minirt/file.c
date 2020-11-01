@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:26:20 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/31 17:46:13 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/01 07:25:24 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int			read_file(t_my_mlx *mlx)
 		mlx->file->index = 0;
 		parse_line(mlx);
 		ft_putendl(mlx->file->line);
-
 		if (mlx->file->error == TRUE)
 			return (E_CANNOT_PARSE);
 		free(mlx->file->line);
@@ -78,4 +77,3 @@ int			read_file(t_my_mlx *mlx)
 		return (E_CANNOT_PARSE);
 	return (TRUE);
 }
-

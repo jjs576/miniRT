@@ -6,13 +6,13 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/31 19:09:39 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/01 17:40:14 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		print_error(int errno)
+void	print_error(int errno)
 {
 	if (errno < 0)
 	{
@@ -27,4 +27,10 @@ void		print_error(int errno)
 			ft_putstr(E_CANNOT_PARSE_MSG);
 		exit(errno);
 	}
+}
+
+int		exit_mlx(void)
+{
+	exit(0);
+	return (0);
 }

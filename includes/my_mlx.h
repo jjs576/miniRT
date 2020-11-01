@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:16:07 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/31 19:33:30 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/01 19:30:13 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct	s_my_mlx
 void			init_mlx(t_my_mlx *mlx);
 void			create_image(t_my_mlx *mlx);
 void			start_mlx(t_my_mlx *mlx);
-void			export_bmp(t_my_mlx *mlx);
+int				handle_mlx(int k, t_my_mlx *mlx);
+int				exit_mlx(void);
 
 t_file			*make_file(int fd);
 int				open_file(char *path);
