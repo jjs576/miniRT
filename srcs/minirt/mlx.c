@@ -6,12 +6,13 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:26:35 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/01 19:31:13 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/02 18:34:57 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_mlx.h"
 #include "minirt.h"
+#include "thread.h"
 
 void	init_mlx(t_my_mlx *mlx)
 {
@@ -47,6 +48,27 @@ int		exit_mlx(void)
 
 void	create_image(t_my_mlx *mlx)
 {
-	mlx;
-}
+	int				i;
+	t_thread_data	*data;
+	pthread_t		*threads;
+	pthread_mutex_t	mutex;
 
+	if (!(threads = ft_calloc(mlx->scene->width, sizeof(pthread_t))))
+		print_error(E_MALLOC_FAIL);
+	if (pthread_mutex_init(&mutex, NULL) != 0)
+		print_error(E_MUTEX_INIT);
+	i = -1;
+	while (++i < mlx->scene->width)
+	{
+		data = create_data(mlx, i, &mutex);
+		if (pthread_create(&threads[i], NULL, &run_thread, data))
+			print_error(E_CREATE_THREAD);
+	}
+	while (i--)
+		if (pthread_join(threads[i], NULL))
+			print_error(E_JOIN_THREAD);
+	pthread_mutex_destroy(&mutex);
+	i = mlx->scene->width;
+	while (--i)
+		wait(NULL);
+}

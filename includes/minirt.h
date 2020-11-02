@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/01 17:44:24 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/02 15:38:20 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,22 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdarg.h>
+# include <pthread.h>
 
 # include "libft.h"
 # include "mlx.h"
+
+# ifndef BACKGROUND_COLOR
+#  define BACKGROUND_COLOR	0x0
+# endif
+
+# ifndef LIMIT_RES_X
+#  define LIMIT_RES_X 2560
+# endif
+
+# ifndef LIMIT_RES_Y
+#  define LIMIT_RES_Y 1440
+# endif
 
 # define MAX_OBJECT			1024
 
@@ -38,13 +51,17 @@
 # define E_INVALID_FILE		-5
 # define E_MALLOC_FAIL		-6
 # define E_CANNOT_PARSE		-7
+# define E_MUTEX_INIT		-8
+# define E_CREATE_THREAD	-9
+# define E_JOIN_THREAD		-10
 
 # define E_MSG				"Error - "
 # define E_ARGUMENTS_MSG		"invalid arguments\n"
 # define E_CANNOT_OPEN_MSG	"can't open file\n"
 # define E_CANNOT_READ_MSG	"can't read file\n"
 # define E_CANNOT_PARSE_MSG	"can't parse\n"
-
+# define E_MALLOC_FAIL_MSG	"fail malloc\n"
+# define E_MUTEX_INIT_MSG	"can't init mutex\n"
 # define T_AMBIENT			1 << 0
 # define T_LIGHT			1 << 1
 # define T_CAMERA			1 << 2

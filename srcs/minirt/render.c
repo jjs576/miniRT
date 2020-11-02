@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:17:22 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/02 16:08:45 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/02 15:25:42 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/02 16:24:08 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include "render.h"
 
-#include "object.h"
-
-typedef struct	s_scene
+void	render_pixel(t_thread_data *data, int y, int color)
 {
-	int			width;
-	int			height;
-	float		total_intensity;
-	int			num_light;
-	int			num_object;
-	int			num_camera;
-	t_object	*lights;
-	t_object	*objects;
-	t_object	*cameras;
-}				t_scene;
+	int	i;
 
-t_scene		*make_scene();
-t_scene		*copy_scene(t_scene *origin);
-#endif
+	i = ((data->x) + (data->scene->width / 2)) *
+		(data->bpp / 8) + (y * data->size_line);
+	pthread_mutex_lock(data->mutex);
+	data->data[i] = color;
+	data->data[++i] = color >> 8;
+	data->data[++i] = color >> 16;
+	pthread_mutex_unlock(data->mutex);
+}

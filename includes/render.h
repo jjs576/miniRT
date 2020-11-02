@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:17:22 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/02 16:08:45 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/02 15:25:20 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/02 15:26:51 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#ifndef RENDER_H
+# define RENDER_H
 
-#include "object.h"
+#include "thread.h"
 
-typedef struct	s_scene
-{
-	int			width;
-	int			height;
-	float		total_intensity;
-	int			num_light;
-	int			num_object;
-	int			num_camera;
-	t_object	*lights;
-	t_object	*objects;
-	t_object	*cameras;
-}				t_scene;
+void	render_pixel(t_thread_data *data, int y, int color);
 
-t_scene		*make_scene();
-t_scene		*copy_scene(t_scene *origin);
+
 #endif

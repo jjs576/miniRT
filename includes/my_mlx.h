@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:16:07 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/01 19:30:13 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/02 11:33:49 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ int				exit_mlx(void);
 t_file			*make_file(int fd);
 int				open_file(char *path);
 int				read_file(t_my_mlx *mlx);
+
 #endif

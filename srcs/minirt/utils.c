@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/01 17:40:14 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/02 15:33:20 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	print_error(int errno)
 			ft_putstr(E_ARGUMENTS_MSG);
 		else if (errno == E_CANNOT_PARSE)
 			ft_putstr(E_CANNOT_PARSE_MSG);
+		else if (errno == E_MALLOC_FAIL)
+			ft_putstr(E_MALLOC_FAIL_MSG);
+		else if (errno == E_MUTEX_INIT)
+			ft_putstr(E_MUTEX_INIT_MSG);
 		exit(errno);
 	}
 }

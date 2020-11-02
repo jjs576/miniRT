@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   bmp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:17:22 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/02 16:08:45 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/02 11:06:16 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/02 11:36:15 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include "bmp.h"
+#include "minirt.h"
 
-#include "object.h"
-
-typedef struct	s_scene
+void	export_bmp(t_my_mlx *mlx)
 {
-	int			width;
-	int			height;
-	float		total_intensity;
-	int			num_light;
-	int			num_object;
-	int			num_camera;
-	t_object	*lights;
-	t_object	*objects;
-	t_object	*cameras;
-}				t_scene;
-
-t_scene		*make_scene();
-t_scene		*copy_scene(t_scene *origin);
-#endif
+	mlx;
+}

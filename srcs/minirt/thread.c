@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:17:22 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/02 16:08:45 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/02 15:40:00 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/02 19:30:25 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include "thread.h"
 
-#include "object.h"
-
-typedef struct	s_scene
+t_thread_data	*create_data(t_my_mlx *mlx, int i, pthread_mutex_t *mutex)
 {
-	int			width;
-	int			height;
-	float		total_intensity;
-	int			num_light;
-	int			num_object;
-	int			num_camera;
-	t_object	*lights;
-	t_object	*objects;
-	t_object	*cameras;
-}				t_scene;
+	t_thread_data	*data;
+	data = (t_thread_data*)ft_calloc(1, sizeof(t_thread_data));
+	data->data = mlx->data;
+	data->x = -(mlx->scene->width / 2) + i;
+	data->bpp = mlx->bpp;
+	data->size_line = mlx->size_line;
+	data->mutex = mutex;
+	return (data);
+}
 
-t_scene		*make_scene();
-t_scene		*copy_scene(t_scene *origin);
-#endif
+void			*run_thread(void *arg)
+{
+
+}
