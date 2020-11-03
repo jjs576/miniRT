@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:17:22 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/02 16:08:45 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/03 10:02:12 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct	s_scene
 	int			num_light;
 	int			num_object;
 	int			num_camera;
+	int			cur_camera;
+	int			*done;
 	t_object	*lights;
 	t_object	*objects;
 	t_object	*cameras;

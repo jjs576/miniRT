@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:26:20 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/01 07:25:24 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/03 08:48:14 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			open_file(char *path)
 }
 
 
-int	get_next_line(int fd, char **line)
+static int	get_next_line(int fd, char **line)
 {
 	char	buf[1];
 	char	*save;
@@ -39,8 +39,7 @@ int	get_next_line(int fd, char **line)
 
 	if (!line)
 		return -1;
-	save = malloc(10000);
-	save[0] = 0;
+	save = ft_calloc(10000, sizeof(char));
 	count = 0;
 	while ((flag = read(fd, buf, 1)) >= 0)
 	{
@@ -49,7 +48,7 @@ int	get_next_line(int fd, char **line)
 		save[count++] = buf[0];
 		save[count] = 0;
 	}
-	temp = malloc(count + 1);
+	temp = ft_calloc(count + 1, sizeof(char));
 	ft_memcpy(temp, save, count);
 	temp[count] = 0;
 	*line = temp;

@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:19:50 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/02 15:27:34 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/03 10:11:10 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@
 #include "scene.h"
 #include "my_mlx.h"
 
-typedef struct s_thread_data
+typedef struct s_thread_info
 {
-	char			*data;
+	int				num;
+	t_object		*camera;
 	t_scene			*scene;
-	int				x;
-	int				bpp;
-	int				size_line;
 	pthread_mutex_t	*mutex;
-}				t_thread_data;
+}				t_thread_info;
 
-t_thread_data	*create_data(t_my_mlx *mlx, int i, pthread_mutex_t *mutex);
+t_thread_info	*create_info(int num, t_object *camera,
+	t_scene *scene, pthread_mutex_t *mutex);
 void			*run_thread(void *arguments);
 
 #endif

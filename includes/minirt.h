@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/02 15:38:20 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/03 08:45:01 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # endif
 
 # define MAX_OBJECT			1024
+# define MAX_PTHREAD		128
 
 # define TRUE				1
 # define FALSE				0
