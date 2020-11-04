@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 22:04:26 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/31 16:22:29 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/04 19:35:50 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,11 @@ t_vec	*make_vector(float data[3])
 	vec->y = data[1];
 	vec->z = data[2];
 	return (vec);
+}
+
+t_vec	*make_vector_zero()
+{
+	const float	data[3] = {0, 0, 0};
+
+	return (make_vector(data));
 }

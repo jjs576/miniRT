@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:09:02 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/03 10:05:57 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/04 17:00:09 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void	parse_resolution(t_my_mlx *mlx)
 	if (mlx->scene->height > LIMIT_RES_Y)
 		mlx->scene->height = LIMIT_RES_Y;
 	parse_space(mlx);
-	mlx->scene->done =
-		(int*)ft_calloc(mlx->scene->width * mlx->scene->height, sizeof(int));
+	mlx->scene->q_size = mlx->scene->width * mlx->scene->height;
+	mlx->scene->queue =
+		(int*)ft_calloc(mlx->scene->q_size, sizeof(int));
 	if (*(mlx->file->line + mlx->file->index) != 0)
 		mlx->file->error = TRUE;
 }

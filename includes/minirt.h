@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/03 08:45:01 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/04 20:05:46 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 
 # define MAX_OBJECT			1024
 # define MAX_PTHREAD		128
+# define MAX_CALC			10
 
 # define TRUE				1
 # define FALSE				0
@@ -57,12 +58,13 @@
 # define E_JOIN_THREAD		-10
 
 # define E_MSG				"Error - "
-# define E_ARGUMENTS_MSG		"invalid arguments\n"
+# define E_ARGUMENTS_MSG	"invalid arguments\n"
 # define E_CANNOT_OPEN_MSG	"can't open file\n"
 # define E_CANNOT_READ_MSG	"can't read file\n"
 # define E_CANNOT_PARSE_MSG	"can't parse\n"
 # define E_MALLOC_FAIL_MSG	"fail malloc\n"
 # define E_MUTEX_INIT_MSG	"can't init mutex\n"
+
 # define T_AMBIENT			1 << 0
 # define T_LIGHT			1 << 1
 # define T_CAMERA			1 << 2

@@ -6,16 +6,15 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:19:50 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/03 10:11:10 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/04 20:08:38 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef THREAD_H
 # define THREAD_H
 
-#include "minirt.h"
-#include "scene.h"
 #include "my_mlx.h"
+#include "minirt.h"
 
 typedef struct s_thread_info
 {

@@ -6,14 +6,14 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 22:57:15 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/31 20:59:26 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/04 19:55:33 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-#include "my_mlx.h"
+# include "my_mlx.h"
 
 /*
 **	parser
@@ -49,6 +49,5 @@ int		parse_int(t_my_mlx *mlx);
 float	parse_float(t_my_mlx *mlx);
 int		*parse_multi_int(t_my_mlx *mlx);
 float	*parse_multi_float(t_my_mlx *mlx);
-
 
 #endif
