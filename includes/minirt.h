@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 10:13:15 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/05 13:02:26 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,9 @@ void			parse_sqaure(char **buf, t_info *info);
 void			parse_cylinder(char **buf, t_info *info);
 void			parse_triangle(char **buf, t_info *info);
 
+double			parse_double(char *str);
+t_vec3d			parse_vector(char *str);
+t_color			parse_color(char *str);
 
 void			print_error(int errno);
 
