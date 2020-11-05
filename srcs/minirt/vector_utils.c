@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 10:02:23 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 22:59:00 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/05 19:40:37 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/05 19:41:58 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	free_2d(char **array)
+double	vec_len(t_vec3d v)
 {
-	int	i;
-
-	i = -1;
-	while (array[i])
-		free(array[i]);
-	free(array);
-}
-
-void	free_info(t_info *info)
-{
-
+	return (sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2)));
 }

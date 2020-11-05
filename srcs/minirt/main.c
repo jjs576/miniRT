@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 17:38:43 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/05 20:00:37 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		main(int argc, char **argv)
 		export_bmp(&info);
 		exit_free(&info);
 	}
-	if (init(&info))
+	if (!init(&info))
 		print_error(E_UNDEFINED);
 	mlx_loop(info.mlx.mlx_ptr);
 	return (0);

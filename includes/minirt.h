@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 17:28:39 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 02:29:49 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@
 
 # define BOOL				int
 
-# define MAX_OBJECT			1024
-# define MAX_PTHREAD		128
-# define MAX_CALC			10
+# define PI					3.14159265359
+
+# define MAX_PTHREAD		42
+# define MAX_CALC			42
 
 # define TRUE				1
 # define FALSE				0
@@ -199,6 +200,29 @@ typedef struct	s_error
 	char	*msg;
 }				t_error;
 
+/*
+**	thread functions
+*/
+
+t_thread_info	*thread_new(t_info *info, t_color *color, int start);
+
+/*
+**	input functions
+*/
+
+/*
+**	rendering functions
+*/
+
+void			put_pixel(t_info *info, int x, int y, t_color color);
+t_color			*render(t_info *info);
+
+/*
+**	mlx functions
+*/
+
+BOOL			init(t_info *info);
+
 
 /*
 **	parse functions
@@ -232,6 +256,8 @@ t_vec3d			vec_add(t_vec3d v1, t_vec3d v2);
 t_vec3d			vec_sub(t_vec3d v1, t_vec3d v2);
 t_vec3d			vec_mul(t_vec3d v, double factor);
 
+double			vec_len(t_vec3d v);
+
 /*
 **	quaternion functions
 */
@@ -262,11 +288,13 @@ t_color			color_mix(t_color c1, t_color c2);
 t_color			color_mul(t_color c, double fact);
 t_color			color_add(t_color c1, t_color c2);
 t_color			color_mix_light(t_color c, t_color l);
+
 /*
 **	util functions
 */
 
 void			print_error(int errno);
 void			free_2d(char **array);
+void			free_info(t_info *info);
 
 #endif

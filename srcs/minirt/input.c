@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 10:02:23 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 22:59:00 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/05 22:54:35 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/05 23:20:10 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	free_2d(char **array)
+int		hook_key(int keycode, t_info *info)
 {
-	int	i;
+	char	*keystring;
 
-	i = -1;
-	while (array[i])
-		free(array[i]);
-	free(array);
-}
-
-void	free_info(t_info *info)
-{
 
 }
