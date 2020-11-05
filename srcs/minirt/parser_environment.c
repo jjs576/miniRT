@@ -6,82 +6,45 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:09:02 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/04 17:00:09 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/05 11:50:05 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "parser.h"
 
-void	parse_resolution(t_my_mlx *mlx)
+void			parse_resolution(char **buf, t_info *info)
 {
-	mlx->file->index = 1;
-	parse_space(mlx);
-	mlx->scene->width = parse_int(mlx);
-	if (mlx->scene->width > LIMIT_RES_X)
-		mlx->scene->width = LIMIT_RES_X;
-	parse_space(mlx);
-	mlx->scene->height = parse_int(mlx);
-	if (mlx->scene->height > LIMIT_RES_Y)
-		mlx->scene->height = LIMIT_RES_Y;
-	parse_space(mlx);
-	mlx->scene->q_size = mlx->scene->width * mlx->scene->height;
-	mlx->scene->queue =
-		(int*)ft_calloc(mlx->scene->q_size, sizeof(int));
-	if (*(mlx->file->line + mlx->file->index) != 0)
-		mlx->file->error = TRUE;
+	int	screen[2];
+
+	if (info->window.window_isvalid)
+		print_error(E_PARSE);
+	if (buf[1])
+		info->window.x = ft_atoi(buf[1]);
+	if (buf[2])
+		info->window.y = ft_atoi(buf[2]);
+	if (info->window.x <= 0 || info->window.y <= 0)
+		print_error(E_PARSE);
+	mlx_get_screen_size(info->mlx.mlx_ptr, &screen[0], &screen[1]);
+	if (info->window.x > screen[0] && !info->scene.save)
+		info->window.x = screen[0];
+	if (info->window.y > screen[1] && !info->scene.save)
+		info->window.y = screen[1];
+	info->window.window_isvalid = TRUE;
 }
 
-void	parse_ambient(t_my_mlx *mlx)
+void			parse_ambient(char **buf, t_info *info)
 {
-	t_object	*light;
+	if (info->scene.ambient_isvalid)
+		print_error(E_PARSE);
 
-	mlx->file->index = 1;
-	light = make_object(T_AMBIENT | T_LIGHT);
-	parse_space(mlx);
-	light->intensity = parse_float(mlx);
-	parse_space(mlx);
-	light->color = make_vector(parse_multi_float(mlx));
-	parse_space(mlx);
-	mlx->scene->total_intensity += light->intensity;
-	mlx->scene->lights[mlx->scene->num_light++] = *light;
-	if (*(mlx->file->line + mlx->file->index) != 0)
-		mlx->file->error = TRUE;
 }
 
-void	parse_camera(t_my_mlx *mlx)
+void			parse_camera(char **buf, t_info *info)
 {
-	t_object	*camera;
 
-	mlx->file->index = 1;
-	camera = make_object(T_CAMERA);
-	parse_space(mlx);
-	camera->point = make_vector(parse_multi_float(mlx));
-	parse_space(mlx);
-	camera->axis = make_vector(parse_multi_float(mlx));
-	parse_space(mlx);
-	camera->fov = parse_int(mlx);
-	parse_space(mlx);
-	mlx->scene->cameras[mlx->scene->num_camera++] = *camera;
-	if (*(mlx->file->line + mlx->file->index) != 0)
-		mlx->file->error = TRUE;
 }
 
-void	parse_light(t_my_mlx *mlx)
+void			parse_light(char **buf, t_info *info)
 {
-	t_object	*light;
 
-	mlx->file->index = 1;
-	light = make_object(T_LIGHT);
-	parse_space(mlx);
-	light->point = make_vector(parse_multi_float(mlx));
-	parse_space(mlx);
-	light->intensity = parse_float(mlx);
-	parse_space(mlx);
-	light->color = make_vector(parse_multi_float(mlx));
-	parse_space(mlx);
-	mlx->scene->total_intensity += light->intensity;
-	mlx->scene->lights[mlx->scene->num_light++] = *light;
-	if (*(mlx->file->line + mlx->file->index) != 0)
-		mlx->file->error = TRUE;
 }

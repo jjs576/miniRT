@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bmp.h                                              :+:      :+:    :+:   */
+/*   lst_new_front.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 17:42:54 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/04 19:55:18 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/05 01:53:37 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/05 01:53:44 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BMP_H
-# define BMP_H
+#include "libft.h"
 
-# include "my_mlx.h"
+void	lst_new_front(t_list **node, void *content)
+{
+	t_list	*new;
 
-void	export_bmp(t_my_mlx *mlx);
-
-#endif
+	if (!node)
+		return ;
+	if (!*node)
+	{
+		*node = lst_new(content);
+		return ;
+	}
+	new = lst_new(content);
+	new->next = *node;
+	(*node)->prev = new;
+	*node = new;
+}

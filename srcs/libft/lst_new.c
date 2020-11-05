@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.h                                           :+:      :+:    :+:   */
+/*   lst_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/10 17:53:00 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/31 14:54:51 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/05 01:51:31 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/05 01:51:41 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#include "libft.h"
 
-# include "vector.h"
-
-typedef struct	s_object
+t_list	*lst_new(void *content)
 {
-	int		type;
-	float	intensity;
-	t_vec	*point;
-	t_vec	*point2;
-	t_vec	*point3;
-	t_vec	*color;
-	t_vec	*axis;
-	float	size;
-	float	diameter;
-	float	height;
-	int		fov;
-}				t_object;
+	t_list	*res;
 
-t_object	*make_object(int type);
-
-#endif
+	res = (t_list *)malloc(sizeof(t_list));
+	if (!res)
+		return (NULL);
+	res->content = content;
+	res->next = NULL;
+	res->prev = NULL;
+	return (res);
+}

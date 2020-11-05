@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:17:22 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/04 16:59:28 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/05 10:28:27 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/05 10:28:36 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include "libft.h"
 
-#include "object.h"
-
-typedef struct	s_scene
+int	ft_strcmp(char *s1, char *s2)
 {
-	int			width;
-	int			height;
-	float		total_intensity;
-	int			num_light;
-	int			num_object;
-	int			num_camera;
-	int			cur_camera;
-	int			*queue;
-	int			q_size;
-	t_object	*lights;
-	t_object	*objects;
-	t_object	*cameras;
-}				t_scene;
-
-t_scene		*make_scene();
-t_scene		*copy_scene(t_scene *origin);
-#endif
+	while (*s1)
+	{
+		if (*s1 != *s2)
+			break ;
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char*)s1 - *(unsigned char*)s2);
+}

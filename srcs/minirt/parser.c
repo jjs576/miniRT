@@ -6,39 +6,115 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:28:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/10/31 17:40:04 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/05 10:31:22 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "my_mlx.h"
-#include "parser.h"
 
-void	parse_line(t_my_mlx *mlx)
+static BOOL	check_filename(char *file)
 {
-	if (mlx->file->line[0] != 0 && mlx->file->line[0] != '#')
-	{
-		if (!ft_strncmp(mlx->file->line, "R", 1))
-			parse_resolution(mlx);
-		else if (!ft_strncmp(mlx->file->line, "sp", 2))
-			parse_sphere(mlx);
-		else if (!ft_strncmp(mlx->file->line, "pl", 2))
-			parse_plane(mlx);
-		else if (!ft_strncmp(mlx->file->line, "sq", 2))
-			parse_square(mlx);
-		else if (!ft_strncmp(mlx->file->line, "cy", 2))
-			parse_cylinder(mlx);
-		else if (!ft_strncmp(mlx->file->line, "tr", 2))
-			parse_triangle(mlx);
-		else if (!ft_strncmp(mlx->file->line, "A", 1))
-			parse_ambient(mlx);
-		else if (!ft_strncmp(mlx->file->line, "c", 1))
-			parse_camera(mlx);
-		else if (!ft_strncmp(mlx->file->line, "l", 1))
-			parse_light(mlx);
+	int	i;
 
-		else
-			mlx->file->error = TRUE;
+	i = 0;
+	while (*(file + i))
+		i++;
+	if (i > 3 && !ft_strncmp(file + i - 3, ".rt", 3))
+		return (TRUE);
+	return (FALSE);
+}
+
+static int	get_next_line(int fd, char **line)
+{
+	char	buf[1];
+	char	*save;
+	int		count;
+	int		flag;
+	char	*temp;
+
+	if (!line)
+		return -1;
+	save = ft_calloc(10000, sizeof(char));
+	count = 0;
+	while ((flag = read(fd, buf, 1)) >= 0)
+	{
+		if (buf[0] == '\n' || flag == 0)
+			break ;
+		save[count++] = buf[0];
+		save[count] = 0;
+	}
+	temp = ft_calloc(count + 1, sizeof(char));
+	ft_memcpy(temp, save, count);
+	temp[count] = 0;
+	*line = temp;
+	free(save);
+	return (flag);
+}
+
+static void	remove_tabs(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if(line[i] == '\t')
+			line[i] = ' ';
+		i++;
 	}
 }
 
+static void	parse_line(char *line, t_info *info)
+{
+	char			**buf;
+	int				i;
+	const t_parser	parser[] = {
+		{"R", &parse_resolution}, {"A", &parse_ambient},
+		{"c", &parse_camera}, {"l", &parse_light},
+		{"pl", &parse_plane}, {"sq", &parse_sqaure},
+		{"sp", &parse_sphere}, {"cy", &parse_cylinder},
+		{"tr", &parse_triangle}
+	};
+
+	i = -1;
+	remove_tabs(line);
+	buf = ft_split(line, ' ');
+	if (buf == 0)
+		print_error(E_PARSE);
+	if (!buf[0])
+		free_2d(buf);
+	while (parser[++i].id)
+		if (!ft_strcmp(buf[0], parser[i].id))
+		{
+			parser[i].func(buf, info);
+			free_2d(buf);
+			return ;
+		}
+	print_error(E_PARSE);
+}
+
+void		parse_file(char *file, t_info *info)
+{
+	int		fd;
+	char	*line;
+	int		ret;
+
+	if (!check_filename(file))
+		print_error(E_OPEN);
+	if ((fd = open(file, O_RDONLY)) < 0)
+		print_error(E_OPEN);
+	ret = 1;
+	while (ret == 1)
+	{
+		ret = get_next_line(fd, &line);
+		if (*line != '#')
+			parse_line(line, info);
+		free(line);
+	}
+	if (!info->window.window_isvalid || !info->scene.ambient_isvalid)
+		print_error(E_PARSE);
+	if (!info->cameras || !info->lights)
+		print_error(E_PARSE);
+	info->cur_cam = info->cameras->content;
+	close(fd);
+}

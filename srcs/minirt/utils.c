@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/02 15:33:20 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/05 09:34:04 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,19 @@
 
 void	print_error(int errno)
 {
-	if (errno < 0)
-	{
-		ft_putstr(E_MSG);
-		if (errno == E_CANNOT_OPEN)
-			ft_putstr(E_CANNOT_OPEN_MSG);
-		else if (errno == E_CANNOT_READ)
-			ft_putstr(E_CANNOT_READ_MSG);
-		else if (errno == E_ARGUMENTS)
-			ft_putstr(E_ARGUMENTS_MSG);
-		else if (errno == E_CANNOT_PARSE)
-			ft_putstr(E_CANNOT_PARSE_MSG);
-		else if (errno == E_MALLOC_FAIL)
-			ft_putstr(E_MALLOC_FAIL_MSG);
-		else if (errno == E_MUTEX_INIT)
-			ft_putstr(E_MUTEX_INIT_MSG);
-		exit(errno);
-	}
+	const t_error	error[] = {
+		{E_UNDEFINED, E_UNDEFINED_MSG},
+		{E_ARGUMENTS, E_ARGUMENTS_MSG},
+		{E_OPEN, E_OPEN_MSG},
+		{E_READ, E_READ_MSG},
+		{E_PARSE, E_PARSE_MSG},
+		{E_MALLOC, E_MALLOC_MSG},
+		{E_THREAD, E_THREAD_MSG},
+		{E_MUTEX, E_MUTEX_MSG}
+	};
+	ft_putstr(E_MSG);
+	ft_putstr(error[errno].msg);
+	exit(errno);
 }
 
 int		exit_mlx(void)

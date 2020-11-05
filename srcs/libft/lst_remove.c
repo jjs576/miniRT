@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   lst_remove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 17:28:40 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/04 19:56:02 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/05 01:54:16 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/05 01:54:23 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#include "libft.h"
 
-typedef struct	s_vec
+void	lst_remove(t_list *node, void (*free_func)(void *))
 {
-	float	x;
-	float	y;
-	float	z;
-}				t_vec;
-
-t_vec	*make_vector(float data[3]);
-t_vec	add_vector(t_vec a, t_vec b);
-t_vec	mul_vector(t_vec a, t_vec b);
-t_vec	*make_vector_zero();
-
-#endif
+	if (!node)
+		return ;
+	free_func(node->content);
+	if (node->prev)
+		node->prev->next = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
+	free(node);
+}

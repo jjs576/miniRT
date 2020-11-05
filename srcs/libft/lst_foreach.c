@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   lst_foreach.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 15:25:20 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/04 20:49:51 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/05 01:52:30 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/05 01:52:42 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "libft.h"
 
-# include "thread.h"
-
-void	render_pixel();
-void	render(t_object *cam, t_my_mlx *mlx);
-
-#endif
+void	lst_foreach(t_list *node, void (*func)(void *))
+{
+	while (node)
+	{
+		func(node->content);
+		node = node->next;
+	}
+}
