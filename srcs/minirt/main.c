@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 09:35:05 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/05 17:38:43 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,16 @@ int		main(int argc, char **argv)
 			print_error(E_ARGUMENTS);
 	}
 	parse_file(argv[1], &info);
+	if (!info.cameras->content)
+		print_error(E_UNDEFINED);
+	info.cur_cam = info.cameras->content;
+	if (info.scene.save)
+	{
+		export_bmp(&info);
+		exit_free(&info);
+	}
+	if (init(&info))
+		print_error(E_UNDEFINED);
+	mlx_loop(info.mlx.mlx_ptr);
+	return (0);
 }

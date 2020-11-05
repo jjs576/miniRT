@@ -1,18 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_token.c                                     :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:13:49 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 13:32:50 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/05 17:29:55 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double	parse_double(char *str)
+static void	get_square_corner(t_object *sq, t_vec3d *corners)
+{
+	t_matrix	sq_matrix;
+	t_vec3d		corner_vec[2];
+
+	if (sq->vector.x == 0 && (sq->vector.y == 1 || sq->vector.y == -1)
+		&& sq->vector.z == 0)
+	{
+		sq_matrix.forward = vec_new(0,sq->vector.y == 1 ? 1 : -1, 0);
+		sq_matrix.right = vec_new(1, 0, 0);
+		sq_matrix.up = vec_new(0, 0, 1);
+	}
+	else
+		sq_matrix = matrix_new(sq->vector);
+	corner_vec[0] = vec_mul(sq_matrix.up, 0.5 * sq->size);
+	corner_vec[1] = vec_mul(sq_matrix.right, 0.5 * sq->size);
+	corners[0] = vec_add(sq->pos[0], vec_add(corner_vec[0], corner_vec[1]));
+	corners[1] = vec_add(sq->pos[0], vec_sub(corner_vec[0], corner_vec[1]));
+	corners[2] = vec_sub(sq->pos[0], vec_add(corner_vec[0], corner_vec[1]));
+	corners[3] = vec_sub(sq->pos[0], vec_sub(corner_vec[0], corner_vec[1]));
+}
+
+void		divide_square(t_object *sq, t_info *info)
+{
+	t_object	*tri[2];
+	t_vec3d		corners[4];
+
+	tri[0] = (t_object*)ft_calloc(1, sizeof(t_object));
+	tri[1] = (t_object*)ft_calloc(1, sizeof(t_object));
+	get_square_corner(sq, corners);
+	tri[0]->type |= T_TRIANGLE;
+	tri[0]->pos[0] = corners[0];
+	tri[0]->pos[1] = corners[1];
+	tri[0]->pos[2] = corners[2];
+	tri[0]->color = sq->color;
+	tri[1]->type |= T_TRIANGLE;
+	tri[1]->pos[0] = corners[1];
+	tri[1]->pos[1] = corners[2];
+	tri[1]->pos[2] = corners[3];
+	tri[1]->color = sq->color;
+	if (!lst_new_back(&(info->objects), tri[0]) ||
+		!lst_new_back(&(info->objects), tri[1]))
+		print_error(E_PARSE);
+}
+
+double		parse_double(char *str)
 {
 	double	res;
 	int		count;

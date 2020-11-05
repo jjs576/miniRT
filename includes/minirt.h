@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 13:02:26 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/05 17:28:39 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,25 +201,72 @@ typedef struct	s_error
 
 
 /*
-**	functions
+**	parse functions
 */
 
 void			parse_file(char *file, t_info *info);
+
 void			parse_resolution(char **buf, t_info *info);
 void			parse_ambient(char **buf, t_info *info);
 void			parse_camera(char **buf, t_info *info);
 void			parse_light(char **buf, t_info *info);
+
 void			parse_plane(char **buf, t_info *info);
 void			parse_sphere(char **buf, t_info *info);
 void			parse_sqaure(char **buf, t_info *info);
 void			parse_cylinder(char **buf, t_info *info);
 void			parse_triangle(char **buf, t_info *info);
 
+void			divide_square(t_object *sq, t_info *info);
 double			parse_double(char *str);
 t_vec3d			parse_vector(char *str);
 t_color			parse_color(char *str);
 
-void			print_error(int errno);
+/*
+**	vector functions
+*/
 
+t_vec3d			vec_new(double x, double y, double z);
+t_vec3d			vec_norm(t_vec3d vec);
+t_vec3d			vec_add(t_vec3d v1, t_vec3d v2);
+t_vec3d			vec_sub(t_vec3d v1, t_vec3d v2);
+t_vec3d			vec_mul(t_vec3d v, double factor);
+
+/*
+**	quaternion functions
+*/
+
+t_quaternion	quat_new(double w, double x, double y, double z);
+t_quaternion	quat_mul(t_quaternion q1, t_quaternion q2);
+t_quaternion	quat_conj(t_quaternion q);
+t_quaternion	quat_norm(t_quaternion q);
+t_quaternion	quat_local_rotate(t_vec3d axis, double angle);
+t_quaternion	rotate_camera(t_vec3d vector, t_vec3d axis, double angle);
+
+/*
+**	matrix functions
+*/
+
+t_matrix		matrix_new(t_vec3d vec);
+t_matrix		matrix_mul(t_matrix m, double factor);
+t_matrix		matrix_prod(t_matrix a, t_matrix b);
+t_matrix		matrix_norm(t_matrix m);
+t_matrix		quat_to_matrix(t_quaternion q);
+
+/*
+**	color functions
+*/
+
+t_color			color_new(int r, int g, int b);
+t_color			color_mix(t_color c1, t_color c2);
+t_color			color_mul(t_color c, double fact);
+t_color			color_add(t_color c1, t_color c2);
+t_color			color_mix_light(t_color c, t_color l);
+/*
+**	util functions
+*/
+
+void			print_error(int errno);
 void			free_2d(char **array);
+
 #endif
