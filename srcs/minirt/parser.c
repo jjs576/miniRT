@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:28:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 10:31:22 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 22:05:20 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	remove_tabs(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if(line[i] == '\t')
 			line[i] = ' ';
@@ -69,11 +69,11 @@ static void	parse_line(char *line, t_info *info)
 	char			**buf;
 	int				i;
 	const t_parser	parser[] = {
-		{"R", &parse_resolution}, {"A", &parse_ambient},
-		{"c", &parse_camera}, {"l", &parse_light},
 		{"pl", &parse_plane}, {"sq", &parse_sqaure},
 		{"sp", &parse_sphere}, {"cy", &parse_cylinder},
-		{"tr", &parse_triangle}
+		{"tr", &parse_triangle}, {"R", &parse_resolution},
+		{"A", &parse_ambient}, {"c", &parse_camera},
+		{"l", &parse_light}
 	};
 
 	i = -1;
@@ -82,7 +82,10 @@ static void	parse_line(char *line, t_info *info)
 	if (buf == 0)
 		print_error(E_PARSE);
 	if (!buf[0])
+	{
 		free_2d(buf);
+		return ;
+	}
 	while (parser[++i].id)
 		if (!ft_strcmp(buf[0], parser[i].id))
 		{
@@ -107,9 +110,11 @@ void		parse_file(char *file, t_info *info)
 	while (ret == 1)
 	{
 		ret = get_next_line(fd, &line);
-		if (*line != '#')
+		ft_putendl(line);
+		if (line && *line != '#')
 			parse_line(line, info);
-		free(line);
+		if (line)
+			free(line);
 	}
 	if (!info->window.window_isvalid || !info->scene.ambient_isvalid)
 		print_error(E_PARSE);

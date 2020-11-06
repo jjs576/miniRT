@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 02:29:49 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 21:25:10 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,19 @@
 # define BOOL				int
 
 # define PI					3.14159265359
+# define EPS				1e-6
 
-# define MAX_PTHREAD		42
-# define MAX_CALC			42
+# define MAX_PTHREAD		0x2a
+# define MAX_CALC			0x2a
 
-# define TRUE				1
+# define TRUE				0x2a
 # define FALSE				0
 
-# define T_SPHERE			1 << 0
-# define T_PLANE			1 << 1
-# define T_SQUARE			1 << 2
-# define T_CYLINDER			1 << 3
-# define T_TRIANGLE			1 << 4
+# define T_SPHERE			0
+# define T_PLANE			1
+# define T_SQUARE			2
+# define T_CYLINDER			3
+# define T_TRIANGLE			4
 
 # define E_UNDEFINED		0
 # define E_ARGUMENTS		1
@@ -135,6 +136,15 @@ typedef struct	s_light
 	t_color		color;
 }				t_light;
 
+
+typedef struct	s_result
+{
+	t_object	*object;
+	t_vec3d		pos;
+	t_color		color;
+	double		distance;
+}				t_result;
+
 /*
 **	general
 */
@@ -210,12 +220,41 @@ t_thread_info	*thread_new(t_info *info, t_color *color, int start);
 **	input functions
 */
 
+int		hook_key(int keycode, t_info *info);
+
 /*
 **	rendering functions
 */
 
+t_vec3d			look_at(t_camera *camera, t_vec3d ray);
 void			put_pixel(t_info *info, int x, int y, t_color color);
 t_color			*render(t_info *info);
+/*
+**	normalize functions
+*/
+
+t_vec3d			normal(t_result result, t_ray ray, t_info *info);
+t_vec3d			norm_sp(t_result result, t_ray ray, t_info *info);
+t_vec3d			norm_pl(t_result result, t_ray ray, t_info *info);
+t_vec3d			norm_cy(t_result result, t_ray ray, t_info *info);
+t_vec3d			norm_tr(t_result result, t_ray ray, t_info *info);
+
+
+/*
+**	distance functions
+*/
+t_result		distance_triangle(t_object *triangle, t_ray ray, t_info *info);
+t_result		distance_plane(t_object *plane, t_ray ray, t_info *info);
+t_result		distance_sphere(t_object *sphere, t_ray ray, t_info *info);
+t_result		distance_cylinder(t_object *cylinder, t_ray ray, t_info *info);
+t_result		object_distance(t_object *object, t_ray ray, t_info *info);
+
+
+/*
+**	ray functions
+*/
+
+t_color	ray_casting(t_ray ray, t_info *info);
 
 /*
 **	mlx functions
@@ -252,11 +291,18 @@ t_color			parse_color(char *str);
 
 t_vec3d			vec_new(double x, double y, double z);
 t_vec3d			vec_norm(t_vec3d vec);
+double			vec_len(t_vec3d v);
+t_vec3d			mul_vec_matrix(t_vec3d v, t_matrix m);
+
 t_vec3d			vec_add(t_vec3d v1, t_vec3d v2);
 t_vec3d			vec_sub(t_vec3d v1, t_vec3d v2);
 t_vec3d			vec_mul(t_vec3d v, double factor);
+double			vec_sqr(t_vec3d v);
+double			vec_dist(t_vec3d v1, t_vec3d v2);
 
-double			vec_len(t_vec3d v);
+t_vec3d			vec_prod(t_vec3d v1, t_vec3d v2);
+t_vec3d 		vec_cross_prod(t_vec3d v1, t_vec3d v2);
+double			vec_dot_prod(t_vec3d v1, t_vec3d v2);
 
 /*
 **	quaternion functions
@@ -294,7 +340,9 @@ t_color			color_mix_light(t_color c, t_color l);
 */
 
 void			print_error(int errno);
-void			free_2d(char **array);
+void			free_list(t_list *list, void (*func)(void *));
 void			free_info(t_info *info);
+void			exit_free(t_info *info);
+void			free_2d(char **array);
 
 #endif

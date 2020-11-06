@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:13:49 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 17:29:55 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 21:27:42 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ double		parse_double(char *str)
 	return (res);
 }
 
-t_vec3d		parse_coord(char *str)
+t_vec3d		parse_vector(char *str)
 {
 	t_vec3d	coord;
 	char	**values;

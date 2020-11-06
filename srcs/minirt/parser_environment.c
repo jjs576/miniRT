@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:09:02 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 17:29:35 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 21:23:54 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	parse_resolution(char **buf, t_info *info)
 {
-	int	screen[2];
+	const int	screen[2] = {2560, 1600};
 
 	if (info->window.window_isvalid)
 		print_error(E_PARSE);
@@ -24,7 +24,7 @@ void	parse_resolution(char **buf, t_info *info)
 		info->window.y = ft_atoi(buf[2]);
 	if (info->window.x <= 0 || info->window.y <= 0)
 		print_error(E_PARSE);
-	mlx_get_screen_size(info->mlx.mlx_ptr, &screen[0], &screen[1]);
+	//mlx_get_screen_size(info->mlx.mlx_ptr, &screen[0], &screen[1]);
 	if (info->window.x > screen[0] && !info->scene.save)
 		info->window.x = screen[0];
 	if (info->window.y > screen[1] && !info->scene.save)

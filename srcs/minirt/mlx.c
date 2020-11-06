@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:26:35 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 00:15:54 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 21:13:20 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ static BOOL	init_mlx_img(t_info *info)
 	if (!info->mlx.addr)
 		return (FALSE);
 	return (TRUE);
-}
-
-static int	hook_key(int keycode, t_info *info)
-{
-
 }
 
 static int	hook_image(t_info *info)

@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 17:32:05 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 21:12:51 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void	print_error(int errno)
 	ft_putstr(E_MSG);
 	ft_putstr(error[errno].msg);
 	exit(errno);
+}
+
+void	exit_free(t_info *info)
+{
+	free_info(info);
+	exit(1);
 }
 
 int		exit_mlx(void)

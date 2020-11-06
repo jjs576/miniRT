@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 23:43:36 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 02:39:18 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 11:26:13 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,14 @@ static t_color	get_pixel(t_vec2i pixel, t_info *info)
 	ray.origin.x = (2 * ((pixel.x + 0.5) / info->window.x) - 1) * fov_factor;
 	ray.origin.y = (1 - (2 * ((pixel.y + 0.5) / info->window.y))) * fov_factor;
 	ray.origin.z = -1;
-	ray.origin = look_at
+	ray.origin = look_at(camera, ray.origin);
+	if (info->window.x > info->window.y)
+		ray.origin.x *= info->window.x / (double)info->window.y;
+	else
+		ray.origin.y *= info->window.y / (double)info->window.x;
+	ray.direction = vec_norm(ray.origin);
+	ray.origin = info->cur_cam->pos;
+	return (ray_casting(ray, info));
 }
 
 static void		*render_thread(void *p)

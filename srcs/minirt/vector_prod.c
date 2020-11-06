@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   vector_prod.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 22:54:35 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 21:10:45 by jjoo             ###   ########.fr       */
+/*   Created: 2020/11/06 12:39:59 by jjoo              #+#    #+#             */
+/*   Updated: 2020/11/06 12:41:25 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		hook_key(int keycode, t_info *info)
+t_vec3d	vec_prod(t_vec3d v1, t_vec3d v2)
 {
-	char	*keystring;
-
-	keystring = ft_itoa(keycode);
-	mlx_string_put(info->mlx.mlx_ptr, info->mlx.win_ptr,
-		(info->window.x / 2) - 10, 20, 0xFFFFFF, keystring);
-	free(keystring);
-	//key(keycode, info);
-	return (0);
+	return (vec_new(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z));
 }
 
+t_vec3d vec_cross_prod(t_vec3d v1, t_vec3d v2)
+{
+	return (vec_new((v1.y * v2.z) - (v1.z * v2.y),
+					(v1.z * v2.x) - (v1.x * v2.z),
+					(v1.x * v2.y) - (v1.y * v2.x)));
+}
+
+double	vec_dot_prod(t_vec3d v1, t_vec3d v2)
+{
+	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+}
 

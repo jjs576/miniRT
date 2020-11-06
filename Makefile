@@ -6,22 +6,23 @@
 #    By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 14:04:40 by jjoo              #+#    #+#              #
-#    Updated: 2020/10/31 16:17:34 by jjoo             ###   ########.fr        #
+#    Updated: 2020/11/06 21:22:17 by jjoo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	miniRT
-SRCS	=	$(wildcard srcs/*/*.c)
-OBJS	=	$(SRCS:.c=.o)
-INCS	=	includes
+NAME		=	miniRT
+SRCS		=	$(wildcard srcs/*/*.c)
+OBJS		=	$(SRCS:.c=.o)
+INCS		=	includes
 
-CC		=	gcc
-FLAGS	=	-Wall -Wextra -Werror
-RM		=	rm -rf
+CC			=	gcc
+FLAGS		=	-Wall -Wextra -Werror
+RM			=	rm -rf
 
-MMS		=	libs/minilibx_mms_20200219
-
-LIBMLX	=	libmlx.dylib
+MMS			=	libs/minilibx_mms_20200219
+FRAMEWORK	=	-framework OpenGl\
+				-framework AppKit
+LIBMLX		=	libmlx.dylib
 all: $(NAME)
 
 %.o: %.c
@@ -31,8 +32,8 @@ $(LIBMLX):
 	@$(MAKE) -C ./$(MMS)
 	@cp ./$(MMS)/libmlx.dylib .
 
-$(NAME): $(OBJS) $(LIBMLX)
-	$(CC) $(FLAGS) -I $(INCS) $(LIBMLX) $(OBJS) -o $(NAME)
+$(NAME): $(LIBMLX) $(OBJS)
+	$(CC) $(FLAGS) -I $(INCS) $(LIBMLX) $(FRAMEWORK) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

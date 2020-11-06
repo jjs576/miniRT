@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 22:04:26 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 19:43:52 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/06 20:23:41 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ t_vec3d	vec_new(double x, double y, double z)
 	return (ret);
 }
 
+double	vec_len(t_vec3d v)
+{
+	return (sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2)));
+}
+
 t_vec3d	vec_norm(t_vec3d vec)
 {
 	double	len;
@@ -30,17 +35,12 @@ t_vec3d	vec_norm(t_vec3d vec)
 	return (vec_new(vec.x / len, vec.y / len, vec.z / len));
 }
 
-t_vec3d	vec_add(t_vec3d v1, t_vec3d v2)
+t_vec3d	mul_vec_matrix(t_vec3d v, t_matrix m)
 {
-	return (vec_new(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z));
-}
+	t_vec3d	ret;
 
-t_vec3d	vec_sub(t_vec3d v1, t_vec3d v2)
-{
-	return (vec_new(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z));
-}
-
-t_vec3d	vec_mul(t_vec3d v, double factor)
-{
-	return (vec_new(v.x * factor, v.y * factor, v.z * factor));
+	ret.x = v.x * m.right.x + v.y * m.up.x + v.z * m.forward.x;
+	ret.x = v.x * m.right.y + v.y * m.up.y + v.z * m.forward.y;
+	ret.x = v.x * m.right.z + v.y * m.up.z + v.z * m.forward.z;
+	return (ret);
 }
