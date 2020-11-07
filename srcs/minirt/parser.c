@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:28:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 22:05:20 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 13:38:37 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void		parse_file(char *file, t_info *info)
 	while (ret == 1)
 	{
 		ret = get_next_line(fd, &line);
-		ft_putendl(line);
 		if (line && *line != '#')
 			parse_line(line, info);
 		if (line)

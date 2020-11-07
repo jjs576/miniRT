@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:54:35 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 21:10:45 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 17:00:30 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,31 @@
 
 int		hook_key(int keycode, t_info *info)
 {
-	char	*keystring;
+	const	t_key	keys[] = {
+		{KEY_ESC, &exit_mlx},
+		{KEY_Q, &exit_mlx},
+		{KEY_P, &switch_cam_next},
+		{KEY_O, &switch_cam_prev},
+		{KEY_W, &cam_move},
+		{KEY_A, &cam_move},
+		{KEY_S, &cam_move},
+		{KEY_D, &cam_move},
+		{KEY_LSHIFT, &cam_move},
+		{KEY_SPACE, &cam_move},
+		{KEY_LEFT, &cam_rotate_lr},
+		{KEY_RIGHT, &cam_rotate_lr},
+		{KEY_UP, &cam_rotate_ud},
+		{KEY_DOWN, &cam_rotate_ud},
+		{0, NULL}
+	};
+	int				i;
 
-	keystring = ft_itoa(keycode);
-	mlx_string_put(info->mlx.mlx_ptr, info->mlx.win_ptr,
-		(info->window.x / 2) - 10, 20, 0xFFFFFF, keystring);
-	free(keystring);
-	//key(keycode, info);
+	i = -1;
+	while (keys[++i].func)
+		if (keys[i].key == keycode)
+		{
+			keys[i].func(keycode, info);
+			break ;
+		}
 	return (0);
 }
-
-

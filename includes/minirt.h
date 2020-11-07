@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 21:25:10 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 20:28:47 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 
 # define BOOL				int
 
-# define PI					3.14159265359
+# define PI					M_PI
 # define EPS				1e-6
+# define MOVE_SPEED			1.0
+# define MAX_PTHREAD		1
+# define MAX_CALC			1
 
-# define MAX_PTHREAD		0x2a
-# define MAX_CALC			0x2a
-
-# define TRUE				0x2a
+# define TRUE				1
 # define FALSE				0
 
 # define T_SPHERE			0
@@ -57,6 +57,27 @@
 # define E_MALLOC_MSG		"malloc\n"
 # define E_THREAD_MSG		"thread\n"
 # define E_MUTEX_MSG		"mutex\n"
+
+# define KEY_CMD			259
+# define KEY_ESC			53
+# define KEY_SPACE			49
+# define KEY_LSHIFT			257
+# define KEY_W				13
+# define KEY_A				0
+# define KEY_S				1
+# define KEY_D				2
+# define KEY_O				31
+# define KEY_G				5
+# define KEY_P				35
+# define KEY_H				4
+# define KEY_J				38
+# define KEY_K				40
+# define KEY_L				37
+# define KEY_Q				12
+# define KEY_UP				126
+# define KEY_DOWN			125
+# define KEY_LEFT			123
+# define KEY_RIGHT			124
 
 /*
 **	basic struct
@@ -210,11 +231,27 @@ typedef struct	s_error
 	char	*msg;
 }				t_error;
 
+typedef struct	s_key
+{
+	int		key;
+	void	(*func)(int, t_info*);
+}				t_key;
+
 /*
 **	thread functions
 */
 
 t_thread_info	*thread_new(t_info *info, t_color *color, int start);
+
+/*
+**	camera functions
+*/
+
+void			cam_move(int keycode, t_info *data);
+void			cam_rotate_lr(int keycode, t_info *data);
+void			cam_rotate_ud(int keycode, t_info *data);
+void			switch_cam_next(int keycode, t_info *data);
+void			switch_cam_prev(int keycode, t_info *data);
 
 /*
 **	input functions
@@ -254,7 +291,7 @@ t_result		object_distance(t_object *object, t_ray ray, t_info *info);
 **	ray functions
 */
 
-t_color	ray_casting(t_ray ray, t_info *info);
+t_color			ray_casting(t_ray ray, t_info *info);
 
 /*
 **	mlx functions
@@ -303,6 +340,7 @@ double			vec_dist(t_vec3d v1, t_vec3d v2);
 t_vec3d			vec_prod(t_vec3d v1, t_vec3d v2);
 t_vec3d 		vec_cross_prod(t_vec3d v1, t_vec3d v2);
 double			vec_dot_prod(t_vec3d v1, t_vec3d v2);
+t_vec3d			vec_atob(t_vec3d a, t_vec3d b);
 
 /*
 **	quaternion functions
@@ -313,7 +351,7 @@ t_quaternion	quat_mul(t_quaternion q1, t_quaternion q2);
 t_quaternion	quat_conj(t_quaternion q);
 t_quaternion	quat_norm(t_quaternion q);
 t_quaternion	quat_local_rotate(t_vec3d axis, double angle);
-t_quaternion	rotate_camera(t_vec3d vector, t_vec3d axis, double angle);
+t_quaternion	rotate_cam(t_vec3d vector, t_vec3d axis, double angle);
 
 /*
 **	matrix functions
@@ -344,5 +382,11 @@ void			free_list(t_list *list, void (*func)(void *));
 void			free_info(t_info *info);
 void			exit_free(t_info *info);
 void			free_2d(char **array);
+void			exit_mlx(int keycode, t_info *info);
+t_result		result_new(t_object *object, t_vec3d pos, t_color color);
+t_result		result_dist_new(t_object *object, t_vec3d pos, t_color color,
+	double distance);
+t_result		result_inf(void);
+
 
 #endif

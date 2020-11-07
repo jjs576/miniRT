@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:09:02 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 21:23:54 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 21:00:13 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	parse_resolution(char **buf, t_info *info)
 {
-	const int	screen[2] = {2560, 1600};
+	const int	screen[2] = {2560, 1440};
 
 	if (info->window.window_isvalid)
 		print_error(E_PARSE);

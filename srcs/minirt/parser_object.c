@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:13:47 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/05 17:29:48 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 18:22:17 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ t_object	*obj;
 		obj->vector.y > 1 || obj->vector.y < -1 ||
 		obj->vector.z > 1 || obj->vector.z < -1)
 		print_error(E_PARSE);
+	obj->color = parse_color(buf[3]);
 	obj->vector = vec_norm(obj->vector);
-	obj->size = parse_double(buf[3]);
-	obj->height = parse_double(buf[4]);
-	obj->color = parse_color(buf[5]);
+	obj->size = parse_double(buf[4]);
+	obj->height = parse_double(buf[5]);
 	if (!lst_new_back(&(info->objects), obj))
 		print_error(E_PARSE);
 }

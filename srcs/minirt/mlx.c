@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:26:35 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 21:13:20 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 17:41:48 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ static int	hook_image(t_info *info)
 		return (0);
 	info->window.rendered = TRUE;
 	image = render(info);
-	y = 0;
-	while (y < info->window.y)
+	x = 0;
+	while (x < info->window.x)
 	{
-		x = 0;
-		while (x < info->window.x)
+		y = 0;
+		while (y < info->window.y)
 		{
-			put_pixel(info, x, y, image[y * info->window.y + x]);
-			x++;
+			put_pixel(info, x, y, image[x * info->window.y + y]);
+			y++;
 		}
-		y++;
+		x++;
 	}
 	free(image);
 	mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win_ptr,
@@ -55,6 +55,7 @@ static int	hook_image(t_info *info)
 static int	hook_exit(t_info *info)
 {
 	free_info(info);
+	exit(1);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:35:43 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 21:13:54 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 19:58:01 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_vec3d	adjust_normal(t_vec3d ray_dir, t_vec3d norm)
 
 	angle = vec_dot_prod(norm, ray_dir);
 	angle /= vec_len(norm) * vec_len(ray_dir);
-	if (acos(angle) < (PI / 2))
+	if (acos(angle) < (M_PI_2))
 		return (vec_mul(norm, -1));
 	return (norm);
 }
@@ -51,6 +51,6 @@ t_vec3d	norm_sp(t_result result, t_ray ray, t_info *info)
 {
 	(void)info;
 	return (adjust_normal(ray.direction,
-		vec_norm(vec_sub(result.pos, result.object->pos[0]))));
+		vec_atob(result.object->pos[0], result.pos)));
 }
 

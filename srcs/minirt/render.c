@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 23:43:36 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 11:26:13 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 17:44:05 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			put_pixel(t_info *info, int x, int y, t_color color)
 	dst = info->mlx.addr + (y * info->mlx.size_line + x * (info->mlx.bpp / 8));
 	*(unsigned char*)dst = color_to_int(color);
 }
+
 static t_color	get_pixel(t_vec2i pixel, t_info *info)
 {
 	t_ray		ray;
@@ -53,8 +54,8 @@ static void		*render_thread(void *p)
 	i = tinfo->start;
 	while (i < (tinfo->info->window.x * tinfo->info->window.y))
 	{
-		tinfo->color[i] = get_pixel((t_vec2i){i % tinfo->info->window.x,
-		i / tinfo->info->window.x},tinfo->info);
+		tinfo->color[i] = get_pixel((t_vec2i){i / tinfo->info->window.y,
+		i % tinfo->info->window.y}, tinfo->info);
 		i += MAX_PTHREAD;
 	}
 	free(p);

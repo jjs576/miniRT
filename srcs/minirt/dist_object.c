@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 12:18:32 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 20:55:30 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 20:18:03 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,19 @@ t_result	distance_plane(t_object *plane, t_ray ray, t_info *info)
 	distance = vec_dot_prod(vec_sub(plane->pos[0], ray.origin), plane->vector)
 		/ vec_dot_prod(plane->vector, ray.direction);
 	if (distance < 0)
-		return ((t_result){0, vec_new(0, 0, 0), color_new(0, 0, 0), INFINITY});
-	return ((t_result){
+		return (result_inf());
+	return (result_dist_new(
 			plane, vec_add(ray.origin, vec_mul(ray.direction, distance)),
-			plane->color, distance});
+			plane->color, distance));
+}
+
+static void	swap_double(double *d1, double *d2)
+{
+	double temp;
+
+	temp = *d1;
+	*d1 = *d2;
+	*d2 = temp;
 }
 
 t_result	distance_sphere(t_object *sphere, t_ray ray, t_info *info)
@@ -39,21 +48,21 @@ t_result	distance_sphere(t_object *sphere, t_ray ray, t_info *info)
 	center = vec_dot_prod(p, ray.direction);
 	d2 = vec_dot_prod(p, p) - pow(center, 2);
 	if (d2 > sphere->size / 2)
-		return ((t_result){0, vec_new(0, 0, 0), color_new(0, 0, 0), INFINITY});
+		return (result_inf());
 	radius = sqrt(sphere->size / 2 - d2);
 	distance[0] = center - radius;
 	distance[1] = center + radius;
-	if (distance[0] < 0 && distance[1] < 0)
-		return ((t_result){0, vec_new(0, 0, 0), color_new(0, 0, 0), INFINITY});
-	if (distance[0] < 0)
-		distance[0] = INFINITY;
-	if (distance[1] < 0)
-		distance[1] = INFINITY;
 	if (distance[0] > distance[1])
+		swap_double(&distance[0], &distance[1]);
+	if (distance[0] < 0)
+	{
 		distance[0] = distance[1];
-	return ((t_result){
-		sphere, vec_add(ray.origin, vec_mul(ray.direction, distance[0])),
-		sphere->color, distance[0]});
+		if (distance[0] < 0)
+			return (result_inf());
+	}
+	ft_putstr("s\n");
+	return (result_dist_new(sphere, vec_add(ray.origin,
+		vec_mul(ray.direction, distance[0])), sphere->color, distance[0]));
 }
 
 static int	init_cylinder(t_object *cylinder, t_ray ray, double *distance)
@@ -110,10 +119,10 @@ t_result	distance_cylinder(t_object *cylinder, t_ray ray, t_info *info)
 		vec_dot_prod(cylinder->vector, vec_sub(q, p[1])) < 0.0)
 			ret = (ret != -1.0) ? fmin(distance[0], distance[1]) : distance[1];
 		if (ret > 0.0)
-			return ((t_result){cylinder, vec_add(ray.origin,
-				vec_mul(ray.direction, ret)), cylinder->color, ret});
+			return (result_dist_new(cylinder, vec_add(ray.origin,
+				vec_mul(ray.direction, ret)), cylinder->color, ret));
 	}
-	return ((t_result){0, vec_new(0, 0, 0), color_new(0, 0, 0), INFINITY});
+	return (result_inf());
 }
 
 

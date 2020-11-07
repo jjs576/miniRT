@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 17:53:05 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 20:59:31 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/07 19:46:40 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ t_result		distance_triangle(t_object *triangle, t_ray ray, t_info *info)
 
 	plane.type = T_PLANE;
 	plane.pos[0] = triangle->pos[0];
-	plane.vector = normal((t_result){triangle, vec_new(0, 0, 0),
-		color_new(0, 0, 0), 0}, ray, info);
+	plane.vector = normal(result_dist_new(triangle, vec_new(0, 0, 0),
+		color_new(0, 0, 0), 0), ray, info);
 	if (vec_dot_prod(plane.vector, ray.direction) == 0)
-		return ((t_result){0, vec_new(0, 0, 0), color_new(0, 0, 0), INFINITY});
+		return (result_inf());
 	tr_plane = object_distance(&plane, ray, info);
 	if (tr_plane.distance == INFINITY)
-		return ((t_result){0, vec_new(0, 0, 0), color_new(0, 0, 0), INFINITY});
+		return (result_inf());
 	if (!check_tri_edge(triangle, plane.vector, tr_plane.pos) &&
 		!check_tri_edge(triangle, vec_mul(plane.vector, -1),
 		tr_plane.pos))
-		return ((t_result){0, vec_new(0, 0, 0), color_new(0, 0, 0), INFINITY});
-	return ((t_result){triangle, tr_plane.pos, triangle->color,
-			vec_dist(ray.origin, tr_plane.pos)});
+		return (result_inf());
+	return (result_dist_new(triangle, tr_plane.pos, triangle->color,
+			vec_dist(ray.origin, tr_plane.pos)));
 }
