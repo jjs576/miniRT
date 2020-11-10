@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:27:41 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 19:49:36 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/10 17:05:52 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ t_result	object_distance(t_object *object, t_ray ray, t_info *info)
 		&distance_triangle
 	};
 	dist_func = object_type[object->type];
-	return ((*dist_func)(object, ray, info));
+	return ((dist_func)(object, ray, info));
 }

@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 22:04:26 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 20:23:41 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/10 17:24:00 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec3d	mul_vec_matrix(t_vec3d v, t_matrix m)
 	t_vec3d	ret;
 
 	ret.x = v.x * m.right.x + v.y * m.up.x + v.z * m.forward.x;
-	ret.x = v.x * m.right.y + v.y * m.up.y + v.z * m.forward.y;
-	ret.x = v.x * m.right.z + v.y * m.up.z + v.z * m.forward.z;
+	ret.y = v.x * m.right.y + v.y * m.up.y + v.z * m.forward.y;
+	ret.z = v.x * m.right.z + v.y * m.up.z + v.z * m.forward.z;
 	return (ret);
 }

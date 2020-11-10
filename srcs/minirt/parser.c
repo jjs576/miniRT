@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:28:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 13:38:37 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/10 17:09:48 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ static void	parse_line(char *line, t_info *info)
 		{"A", &parse_ambient}, {"c", &parse_camera},
 		{"l", &parse_light}
 	};
-
 	i = -1;
 	remove_tabs(line);
 	buf = ft_split(line, ' ');

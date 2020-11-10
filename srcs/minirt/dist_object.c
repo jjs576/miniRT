@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 12:18:32 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 20:18:03 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/10 17:16:51 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	swap_double(double *d1, double *d2)
 	*d1 = *d2;
 	*d2 = temp;
 }
-
+#include <stdio.h>
 t_result	distance_sphere(t_object *sphere, t_ray ray, t_info *info)
 {
 	double	distance[2];
@@ -47,11 +47,13 @@ t_result	distance_sphere(t_object *sphere, t_ray ray, t_info *info)
 	p = vec_sub(sphere->pos[0], ray.origin);
 	center = vec_dot_prod(p, ray.direction);
 	d2 = vec_dot_prod(p, p) - pow(center, 2);
+	//printf("%f, %f\n",d2, sphere->size);
 	if (d2 > sphere->size / 2)
 		return (result_inf());
 	radius = sqrt(sphere->size / 2 - d2);
 	distance[0] = center - radius;
 	distance[1] = center + radius;
+	//printf("%f %f\n",distance[0], distance[1]);
 	if (distance[0] > distance[1])
 		swap_double(&distance[0], &distance[1]);
 	if (distance[0] < 0)
@@ -60,7 +62,6 @@ t_result	distance_sphere(t_object *sphere, t_ray ray, t_info *info)
 		if (distance[0] < 0)
 			return (result_inf());
 	}
-	ft_putstr("s\n");
 	return (result_dist_new(sphere, vec_add(ray.origin,
 		vec_mul(ray.direction, distance[0])), sphere->color, distance[0]));
 }

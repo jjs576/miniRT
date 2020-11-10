@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:13:47 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 18:22:17 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/10 16:38:05 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	parse_sphere(char **buf, t_info *info)
 	if (!lst_new_back(&(info->objects), obj))
 		print_error(E_PARSE);
 }
-
 void	parse_sqaure(char **buf, t_info *info)
 {
 	t_object	*obj;

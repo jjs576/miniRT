@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 11:24:56 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 18:46:20 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/10 17:02:43 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static t_color	ray_casting_light(t_result result, t_ray ray, t_info *info)
 	}
 	return (ret);
 }
-
 t_result	ray_casting_object(t_ray ray, t_info *info)
 {
 	t_list		*cur_object;
@@ -83,7 +82,7 @@ t_result	ray_casting_object(t_ray ray, t_info *info)
 	double		min_distance;
 
 	min_distance = INFINITY;
-	closest_object = 0;
+	closest_object = (void*)0;
 	cur_object = info->objects;
 	while (cur_object)
 	{
@@ -97,7 +96,7 @@ t_result	ray_casting_object(t_ray ray, t_info *info)
 		cur_object = cur_object->next;
 	}
 	if (!closest_object)
-		return ((t_result){0, vec_new(0, 0, 0), color_new(0, 0, 0), INFINITY});
+		return (result_inf());
 	return (result_closest);
 }
 
