@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 23:43:36 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 17:44:05 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/11 14:34:10 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ static int		color_to_int(t_color color)
 void			put_pixel(t_info *info, int x, int y, t_color color)
 {
 	char	*dst;
+
 	dst = info->mlx.addr + (y * info->mlx.size_line + x * (info->mlx.bpp / 8));
-	*(unsigned char*)dst = color_to_int(color);
+	*(unsigned int*)dst = color_to_int(color);
 }
 
 static t_color	get_pixel(t_vec2i pixel, t_info *info)

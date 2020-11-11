@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:29:50 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/10 17:05:24 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/11 14:44:40 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_vec3d			normal(t_result result, t_ray ray, t_info *info)
 		&norm_cy,
 		&norm_tr
 	};
+
 	norm_func = object_type[result.object->type];
 	return ((norm_func)(result, ray, info));
 }

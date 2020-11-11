@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:26:35 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 17:41:48 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/11 14:44:31 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ BOOL		init(t_info *info)
 		return (FALSE);
 	if (!init_mlx_img(info))
 		return (FALSE);
-	mlx_hook(info->mlx.win_ptr, 17, 0L,	&hook_exit, info);
+	mlx_hook(info->mlx.win_ptr, 17, 0L, &hook_exit, info);
 	mlx_key_hook(info->mlx.win_ptr, &hook_key, info);
 	mlx_loop_hook(info->mlx.mlx_ptr, &hook_image, info);
 	return (TRUE);

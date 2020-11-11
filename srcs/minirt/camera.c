@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 16:50:50 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 17:08:49 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/11 14:39:49 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			cam_rotate_lr(int keycode, t_info *info)
 
 void			cam_rotate_ud(int keycode, t_info *info)
 {
-int ratio;
+	int ratio;
 
 	ratio = 0;
 	info->window.rendered = FALSE;

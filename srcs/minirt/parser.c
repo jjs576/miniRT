@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:28:08 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/10 17:09:48 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/11 14:42:31 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	get_next_line(int fd, char **line)
 	char	*temp;
 
 	if (!line)
-		return -1;
+		return (-1);
 	save = ft_calloc(10000, sizeof(char));
 	count = 0;
 	while ((flag = read(fd, buf, 1)) >= 0)
@@ -58,7 +58,7 @@ static void	remove_tabs(char *line)
 	i = 0;
 	while (line && line[i])
 	{
-		if(line[i] == '\t')
+		if (line[i] == '\t')
 			line[i] = ' ';
 		i++;
 	}
@@ -68,13 +68,11 @@ static void	parse_line(char *line, t_info *info)
 {
 	char			**buf;
 	int				i;
-	const t_parser	parser[] = {
-		{"pl", &parse_plane}, {"sq", &parse_sqaure},
-		{"sp", &parse_sphere}, {"cy", &parse_cylinder},
-		{"tr", &parse_triangle}, {"R", &parse_resolution},
-		{"A", &parse_ambient}, {"c", &parse_camera},
-		{"l", &parse_light}
-	};
+	const t_parser	parser[] = {{"pl", &parse_plane}, {"sq", &parse_sqaure},
+	{"sp", &parse_sphere}, {"cy", &parse_cylinder}, {"tr", &parse_triangle},
+		{"R", &parse_resolution}, {"A", &parse_ambient}, {"c", &parse_camera},
+		{"l", &parse_light}};
+
 	i = -1;
 	remove_tabs(line);
 	buf = ft_split(line, ' ');

@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/10 16:25:59 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/11 14:59:02 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define PI					M_PI
 # define EPS				1e-6
 # define MOVE_SPEED			1.0
-# define MAX_PTHREAD		1
+# define MAX_PTHREAD		42
 # define MAX_CALC			1
 
 # define TRUE				1
@@ -99,8 +99,8 @@ typedef struct	s_vec3d
 
 typedef struct	s_vec2i
 {
-	int		x;
-	int		y;
+	uint16_t	x;
+	uint16_t	y;
 }				t_vec2i;
 
 typedef struct	s_ray
@@ -156,7 +156,6 @@ typedef struct	s_light
 	double		ratio;
 	t_color		color;
 }				t_light;
-
 
 typedef struct	s_result
 {
@@ -257,7 +256,7 @@ void			switch_cam_prev(int keycode, t_info *data);
 **	input functions
 */
 
-int		hook_key(int keycode, t_info *info);
+int				hook_key(int keycode, t_info *info);
 
 /*
 **	rendering functions
@@ -266,6 +265,7 @@ int		hook_key(int keycode, t_info *info);
 t_vec3d			look_at(t_camera *camera, t_vec3d ray);
 void			put_pixel(t_info *info, int x, int y, t_color color);
 t_color			*render(t_info *info);
+
 /*
 **	normalize functions
 */
@@ -276,16 +276,15 @@ t_vec3d			norm_pl(t_result result, t_ray ray, t_info *info);
 t_vec3d			norm_cy(t_result result, t_ray ray, t_info *info);
 t_vec3d			norm_tr(t_result result, t_ray ray, t_info *info);
 
-
 /*
 **	distance functions
 */
+
 t_result		distance_triangle(t_object *triangle, t_ray ray, t_info *info);
 t_result		distance_plane(t_object *plane, t_ray ray, t_info *info);
 t_result		distance_sphere(t_object *sphere, t_ray ray, t_info *info);
 t_result		distance_cylinder(t_object *cylinder, t_ray ray, t_info *info);
 t_result		object_distance(t_object *object, t_ray ray, t_info *info);
-
 
 /*
 **	ray functions
@@ -298,7 +297,6 @@ t_color			ray_casting(t_ray ray, t_info *info);
 */
 
 BOOL			init(t_info *info);
-
 
 /*
 **	parse functions
@@ -338,7 +336,7 @@ double			vec_sqr(t_vec3d v);
 double			vec_dist(t_vec3d v1, t_vec3d v2);
 
 t_vec3d			vec_prod(t_vec3d v1, t_vec3d v2);
-t_vec3d 		vec_cross_prod(t_vec3d v1, t_vec3d v2);
+t_vec3d			vec_cross_prod(t_vec3d v1, t_vec3d v2);
 double			vec_dot_prod(t_vec3d v1, t_vec3d v2);
 t_vec3d			vec_atob(t_vec3d a, t_vec3d b);
 
@@ -387,6 +385,5 @@ t_result		result_new(t_object *object, t_vec3d pos, t_color color);
 t_result		result_dist_new(t_object *object, t_vec3d pos, t_color color,
 	double distance);
 t_result		result_inf(void);
-
 
 #endif

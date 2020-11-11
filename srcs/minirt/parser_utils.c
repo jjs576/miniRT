@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:13:49 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/06 21:27:42 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/11 14:33:03 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	get_square_corner(t_object *sq, t_vec3d *corners)
 	if (sq->vector.x == 0 && (sq->vector.y == 1 || sq->vector.y == -1)
 		&& sq->vector.z == 0)
 	{
-		sq_matrix.forward = vec_new(0,sq->vector.y == 1 ? 1 : -1, 0);
+		sq_matrix.forward = vec_new(0, sq->vector.y == 1 ? 1 : -1, 0);
 		sq_matrix.right = vec_new(1, 0, 0);
 		sq_matrix.up = vec_new(0, 0, 1);
 	}

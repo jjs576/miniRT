@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/07 17:14:20 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/11 14:33:38 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	print_error(int errno)
 		{E_THREAD, E_THREAD_MSG},
 		{E_MUTEX, E_MUTEX_MSG}
 	};
+
 	ft_putstr(E_MSG);
 	ft_putstr(error[errno].msg);
 	exit(errno);
