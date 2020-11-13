@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 11:24:56 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/11 14:35:31 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/13 16:58:29 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static t_color	cast_light(
 	if (info->scene.ambient_ratio == 1)
 		return (result.color);
 	if (ray_blocked(result.object, light, (t_ray){result.pos,
-		vec_norm(vec_sub(light->pos, result.pos))}, info))
+		vec_atob(result.pos, light->pos)}, info))
 		return (color_new(0, 0, 0));
-	light_dir = vec_norm(vec_sub(light->pos, result.pos));
+	light_dir = vec_atob(result.pos, light->pos);
 	norm = normal(result, ray, info);
 	factor = vec_dot_prod(light_dir, norm);
 	if (factor < 0)

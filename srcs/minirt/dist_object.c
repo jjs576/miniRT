@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 12:18:32 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/11 14:50:44 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/13 16:37:07 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,6 @@ t_result	distance_plane(t_object *plane, t_ray ray, t_info *info)
 	return (result_dist_new(
 			plane, vec_add(ray.origin, vec_mul(ray.direction, distance)),
 			plane->color, distance));
-}
-
-static void	swap_double(double *d1, double *d2)
-{
-	double temp;
-
-	temp = *d1;
-	*d1 = *d2;
-	*d2 = temp;
 }
 
 t_result	distance_sphere(t_object *sphere, t_ray ray, t_info *info)
@@ -93,6 +84,14 @@ static int	init_cylinder(t_object *cylinder, t_ray ray, double *distance)
 	return (TRUE);
 }
 
+static void	init_cylinder_value(t_object *cylinder, t_vec3d *p)
+{
+	p[0] = vec_sub(cylinder->pos[0],
+		vec_mul(cylinder->vector, cylinder->height / 2.0));
+	p[1] = vec_add(cylinder->pos[0],
+		vec_mul(cylinder->vector, cylinder->height / 2.0));
+}
+
 t_result	distance_cylinder(t_object *cylinder, t_ray ray, t_info *info)
 {
 	t_vec3d	p[2];
@@ -101,18 +100,16 @@ t_result	distance_cylinder(t_object *cylinder, t_ray ray, t_info *info)
 	double	ret;
 
 	(void)info;
-	p[0] = vec_sub(cylinder->pos[0],
-		vec_mul(cylinder->vector, cylinder->height / 2.0));
-	p[1] = vec_add(cylinder->pos[0],
-		vec_mul(cylinder->vector, cylinder->height / 2.0));
+	init_cylinder_value(cylinder, p);
 	ret = -1.0;
-	if (init_cylinder(cylinder, ray, distance) == FALSE)
+	if (init_cylinder(cylinder, ray, distance) == TRUE)
 	{
 		q = vec_add(ray.origin, vec_mul(ray.direction, distance[0]));
 		if (distance[0] > EPS &&
 		vec_dot_prod(cylinder->vector, vec_sub(q, p[0])) > 0.0 &&
 		vec_dot_prod(cylinder->vector, vec_sub(q, p[1])) < 0.0)
 			ret = distance[0];
+		q = vec_add(ray.origin, vec_mul(ray.direction, distance[1]));
 		if (distance[1] > EPS &&
 		vec_dot_prod(cylinder->vector, vec_sub(q, p[0])) > 0.0 &&
 		vec_dot_prod(cylinder->vector, vec_sub(q, p[1])) < 0.0)

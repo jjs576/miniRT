@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 14:21:10 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/11 14:44:56 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/12 15:24:44 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		main(int argc, char **argv)
 	info.cur_cam = info.cameras->content;
 	if (info.scene.save)
 	{
+		export_bmp(&info);
 		exit_free(&info);
 	}
 	if (!init(&info))

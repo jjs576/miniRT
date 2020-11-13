@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 19:26:35 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/11 14:44:31 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/12 15:58:47 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static BOOL	init_mlx_img(t_info *info)
 		return (FALSE);
 	return (TRUE);
 }
-
 static int	hook_image(t_info *info)
 {
 	t_color	*image;

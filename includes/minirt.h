@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/11 14:59:02 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/13 16:38:35 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define PI					M_PI
 # define EPS				1e-6
 # define MOVE_SPEED			1.0
-# define MAX_PTHREAD		42
+# define MAX_PTHREAD		6
 # define MAX_CALC			1
 
 # define TRUE				1
@@ -265,6 +265,7 @@ int				hook_key(int keycode, t_info *info);
 t_vec3d			look_at(t_camera *camera, t_vec3d ray);
 void			put_pixel(t_info *info, int x, int y, t_color color);
 t_color			*render(t_info *info);
+void			export_bmp(t_info *info);
 
 /*
 **	normalize functions
@@ -385,5 +386,6 @@ t_result		result_new(t_object *object, t_vec3d pos, t_color color);
 t_result		result_dist_new(t_object *object, t_vec3d pos, t_color color,
 	double distance);
 t_result		result_inf(void);
+void			swap_double(double *d1, double *d2);
 
 #endif
