@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 16:29:14 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/13 16:38:35 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/16 14:45:22 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@
 # define PI					M_PI
 # define EPS				1e-6
 # define MOVE_SPEED			1.0
-# define MAX_PTHREAD		6
-# define MAX_CALC			1
+# define MAX_PTHREAD		42
 
 # define TRUE				1
 # define FALSE				0
@@ -387,5 +386,6 @@ t_result		result_dist_new(t_object *object, t_vec3d pos, t_color color,
 	double distance);
 t_result		result_inf(void);
 void			swap_double(double *d1, double *d2);
+size_t			char_arrlen(char **array);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:13:47 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/11 14:35:02 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/16 14:48:44 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	parse_plane(char **buf, t_info *info)
 	t_object	*obj;
 
 	obj = (t_object*)ft_calloc(1, sizeof(t_object));
+	if (char_arrlen(buf) != 4)
+		print_error(E_PARSE);
 	obj->type |= T_PLANE;
 	obj->pos[0] = parse_vector(buf[1]);
 	obj->vector = parse_vector(buf[2]);
@@ -35,6 +37,8 @@ void	parse_sphere(char **buf, t_info *info)
 	t_object	*obj;
 
 	obj = (t_object*)ft_calloc(1, sizeof(t_object));
+	if (char_arrlen(buf) != 4)
+		print_error(E_PARSE);
 	obj->type |= T_SPHERE;
 	obj->pos[0] = parse_vector(buf[1]);
 	obj->size = parse_double(buf[2]);
@@ -48,6 +52,8 @@ void	parse_sqaure(char **buf, t_info *info)
 	t_object	*obj;
 
 	obj = (t_object*)ft_calloc(1, sizeof(t_object));
+	if (char_arrlen(buf) != 5)
+		print_error(E_PARSE);
 	obj->type |= T_SQUARE;
 	obj->pos[0] = parse_vector(buf[1]);
 	obj->vector = parse_vector(buf[2]);
@@ -67,6 +73,8 @@ void	parse_cylinder(char **buf, t_info *info)
 	t_object	*obj;
 
 	obj = (t_object*)ft_calloc(1, sizeof(t_object));
+	if (char_arrlen(buf) != 6)
+		print_error(E_PARSE);
 	obj->type |= T_CYLINDER;
 	obj->pos[0] = parse_vector(buf[1]);
 	obj->vector = parse_vector(buf[2]);
@@ -87,6 +95,8 @@ void	parse_triangle(char **buf, t_info *info)
 	t_object	*obj;
 
 	obj = (t_object*)ft_calloc(1, sizeof(t_object));
+	if (char_arrlen(buf) != 5)
+		print_error(E_PARSE);
 	obj->type |= T_TRIANGLE;
 	obj->pos[0] = parse_vector(buf[1]);
 	obj->pos[1] = parse_vector(buf[2]);

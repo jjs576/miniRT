@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/16 13:16:23 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/16 14:44:56 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,14 @@ void	swap_double(double *d1, double *d2)
 	temp = *d1;
 	*d1 = *d2;
 	*d2 = temp;
+}
+
+size_t	char_arrlen(char **array)
+{
+	size_t	res;
+
+	res = 0;
+	while (array[res])
+		res++;
+	return (res);
 }

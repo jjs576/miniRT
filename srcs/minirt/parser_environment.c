@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 23:09:02 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/16 12:47:31 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/16 14:49:42 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	parse_resolution(char **buf, t_info *info)
 	const int	screen[2] = {1920, 1080};
 
 	if (info->window.window_isvalid)
+		print_error(E_PARSE);
+	if (char_arrlen(buf) != 3)
 		print_error(E_PARSE);
 	if (buf[1])
 		info->window.x = ft_atoi(buf[1]);
@@ -36,6 +38,8 @@ void	parse_ambient(char **buf, t_info *info)
 {
 	if (info->scene.ambient_isvalid)
 		print_error(E_PARSE);
+	if (char_arrlen(buf) != 3)
+		print_error(E_PARSE);
 	info->scene.ambient_ratio = parse_double(buf[1]);
 	info->scene.ambient_color = parse_color(buf[2]);
 	if (info->scene.ambient_ratio > 1 || info->scene.ambient_ratio < 0)
@@ -48,6 +52,8 @@ void	parse_camera(char **buf, t_info *info)
 	t_camera	*camera;
 
 	camera = (t_camera*)ft_calloc(1, sizeof(t_camera));
+	if (char_arrlen(buf) != 4)
+		print_error(E_PARSE);
 	camera->pos = parse_vector(buf[1]);
 	camera->vector = parse_vector(buf[2]);
 	if (camera->vector.x > 1 || camera->vector.x < -1 ||
@@ -69,6 +75,8 @@ void	parse_light(char **buf, t_info *info)
 	t_light	*light;
 
 	light = (t_light*)ft_calloc(1, sizeof(t_light));
+	if (char_arrlen(buf) != 4)
+		print_error(E_PARSE);
 	light->pos = parse_vector(buf[1]);
 	light->ratio = parse_double(buf[2]);
 	light->color = parse_color(buf[3]);
