@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:49:29 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/13 16:38:33 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/16 13:16:23 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	exit_mlx(int keycode, t_info *info)
 	mlx_destroy_window(info->mlx.mlx_ptr, info->mlx.win_ptr);
 	exit_free(info);
 }
+
 void	swap_double(double *d1, double *d2)
 {
 	double temp;

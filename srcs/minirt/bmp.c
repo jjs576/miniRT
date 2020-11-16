@@ -6,7 +6,7 @@
 /*   By: jjoo <jjoo@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 13:27:06 by jjoo              #+#    #+#             */
-/*   Updated: 2020/11/12 15:22:53 by jjoo             ###   ########.fr       */
+/*   Updated: 2020/11/16 13:16:39 by jjoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void		bmp_write_image(char *buf, t_info *info)
 		y--;
 	}
 }
+
 void			export_bmp(t_info *info)
 {
 	char	*buf;
